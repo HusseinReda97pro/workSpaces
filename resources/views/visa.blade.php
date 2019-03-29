@@ -81,7 +81,6 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    {{$vs =\App\work_space::all()}}
                 </div>
 
                 <div class="links">
