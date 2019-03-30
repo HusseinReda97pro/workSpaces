@@ -30,4 +30,4 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::post('login','MainController@checklogin') ; 
 Route::post('ownerRegistrate','MainController@registrateOwner') ; 
-Route::get('/RequestsData', 'AdminController@index')->name('home');
+Route::get('/RequestsData', 'AdminController@index'); 
