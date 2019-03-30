@@ -71,6 +71,7 @@ class RegisterController extends Controller
             'user_name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+
         ]);
     }
 
@@ -82,11 +83,11 @@ class RegisterController extends Controller
             $user = $this->create($input)->toArray();
                 $user['link'] = str_random(30);
 
-            DB::table('users')->insert(['id'=>$user['id'],'token'=>$user['link']]);
+            DB::table('user_activations')->insert(['id_user'=>$user['id'],'token'=>$user['link']]);
 
-            Mail::send('emails.activation', $user, function($message) use ($user){
+            Mail::send('mail.activation', $user, function($message) use ($user){
                 $message->to($user['email']);
-                $message->subject('www.hc-kr.com - Activation Code');
+                $message->subject('Activation Code');
             });
             return redirect()->to('login')->with('success',"We sent activation code. Please check your mail.");
         }
@@ -94,10 +95,10 @@ class RegisterController extends Controller
     }
 
     public function userActivation($token){
-        $check = DB::table('users')->where('token',$token)->first();
+        $check = DB::table('user_activations')->where('token',$token)->first();
         if(!is_null($check)){
             $user = User::find($check->id_user);
-            if ($user->is_activated ==1){
+            if ($user->is_activated == 1){
                 return redirect()->to('login')->with('success',"user are already actived.");
 
             }
