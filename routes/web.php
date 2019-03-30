@@ -12,9 +12,17 @@
 */
 
 Route::get('/', function () {
-    return view('visa');
+    return view('welcome');
+});
+Route::get('/signIn', function () {
+    return view('signIn');
+});
+Route::get('/registrate', function () {
+    return view('registration');
 });
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::post('login','MainController@checklogin') ; 
+Route::post('ownerRegistrate','MainController@registrateOwner') ; 
