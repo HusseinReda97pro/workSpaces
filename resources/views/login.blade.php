@@ -1,58 +1,81 @@
-<!DOCTYPE html>
-<html>
- <head>
-  <title>My Login</title>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <style type="text/css">
-   .box{
-    width:600px;
-    margin:0 auto;
-    border:1px solid #ccc;
-   }
-  </style>
- </head>
- <body>
-  <br />
-  <div class="container box">
-   <h3 style=" align:center ; ">MY Login</h3><br />
+@extends('layouts.app')
+@section('content')
+ <div class="container">
+  <div class="row">
+   <div class="col-md-8 col-md-offset-2">
+    <div class="panel panel-default">
+     <div class="panel-heading">Login</div>
+     <div class="panel-body">
+      <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
+       {{ csrf_field() }}
 
-   @if(isset(Auth::user()->email))
-    <script>window.location="/main/successlogin";</script>
-   @endif
+       @if ($message = Session::get('success'))
+        <div class="alert alert-success">
+         <p>
+          {{ $message }}
+         </p>
+        </div>
+       @endif
+       @if ($message = Session::get('warning'))
+        <div class="alert alert-warning">
+         <p>
+          {{ $message }}
+         </p>
+        </div>
+       @endif
+       <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+        <label for="email" class="col-md-4 control-label">E-Mail Address</label>
 
-   @if ($message = Session::get('error'))
-   <div class="alert alert-danger alert-block">
-    <button type="button" class="close" data-dismiss="alert">×</button>
-    <strong>{{ $message }}</strong>
+        <div class="col-md-6">
+         <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus>
+
+         @if ($errors->has('email'))
+          <span class="help-block">
+                                        <strong>{{ $errors->first('email') }}</strong>
+                                    </span>
+         @endif
+        </div>
+       </div>
+
+       <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+        <label for="password" class="col-md-4 control-label">Password</label>
+
+        <div class="col-md-6">
+         <input id="password" type="password" class="form-control" name="password" required>
+
+         @if ($errors->has('password'))
+          <span class="help-block">
+                                        <strong>{{ $errors->first('password') }}</strong>
+                                    </span>
+         @endif
+        </div>
+       </div>
+
+       <div class="form-group">
+        <div class="col-md-6 col-md-offset-4">
+         <div class="checkbox">
+          <label>
+           <input type="checkbox" name="remember"> Remember Me
+          </label>
+         </div>
+        </div>
+       </div>
+
+       <div class="form-group">
+        <div class="col-md-8 col-md-offset-4">
+         <button type="submit" class="btn btn-primary">
+          Login
+         </button>
+
+         <a class="btn btn-link" href="{{ url('/password/reset') }}">
+          Forgot Your Password?
+         </a>
+        </div>
+       </div>
+      </form>
+     </div>
+    </div>
    </div>
-   @endif
-
-   @if (count($errors) > 0)
-    <div class="alert alert-danger">
-     <ul>
-     @foreach($errors->all() as $error)
-      <li>{{ $error }}</li>
-     @endforeach
-     </ul>
-    </div>
-   @endif
-
-   <form method="post" action="{{ url('/main/checklogin') }}">
-    {{ csrf_field() }}
-    <div class="form-group">
-     <label>Enter Email</label>
-     <input type="email" name="email" class="form-control" />
-    </div>
-    <div class="form-group">
-     <label>Enter Password</label>
-     <input type="password" name="password" class="form-control" />
-    </div>
-    <div class="form-group">
-     <input type="submit" name="login" class="btn btn-primary" value="Login" />
-    </div>
-   </form>
   </div>
- </body>
-</html>
+ </div>
+@endsection
