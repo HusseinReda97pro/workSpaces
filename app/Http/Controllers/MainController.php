@@ -36,9 +36,9 @@ class MainController extends Controller
         else
         {
             if($login[0]->user_role== 0) {
-                return redirect()->to('adminPanel');
+                return redirect()->to('/admin');
             }elseif($login[0]->user_role == 1){
-                return redirect()->to('visa');
+                return redirect()->to('/');
             }
             else {
                 return view('errorLogin');
