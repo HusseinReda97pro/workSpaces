@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
+use Illuminate\Http\Request;
 class LoginController extends Controller
 {
     /*
@@ -36,4 +37,12 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+
+    public function credentials(Request $request)
+    {
+        $request['is_activated']=1;
+        return $request->only('email','password','is_activated');
+    }
+
+
 }
