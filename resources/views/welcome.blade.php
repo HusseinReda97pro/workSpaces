@@ -28,10 +28,10 @@
               <div class="collapse navbar-collapse main-menu bs-example-navbar-collapse-1" id="navbar-example">
                 <ul class="nav navbar-nav navbar-right">
                   <li class="active">
-                    <a class="page-scroll" href="#home">Home</a>
+                    <a  href="#home">Home</a>
                   </li>
                   <li>
-                    <a class="page-scroll" href="#about">About</a>
+                    <a  href="#about">About</a>
                   </li>
                 </ul>
               </div>
@@ -50,7 +50,7 @@
     <header class="masthead" id="home">
         <div class="container">
           <div class="intro-text">
-            <img  src="images/workspace.jpg" alt="">
+            <img  src="images/workspace.png" alt="">
             <div style="font-size:25px;" class="intro-lead-in">Registrate Your Workspace with us</div>
             <div class="intro-heading text-uppercase">Be Reachable</div>
             <a class="btn btn-primary btn-md text-uppercase" href="{{ url('signIn') }}">Login</a>

@@ -20,7 +20,7 @@ class MainController extends Controller
 
         $this->validate($request, [
         'email'   => 'required|email',
-        'password'  => 'required|alphaNum|min:3'
+        'password'  => 'required|alphaNum'
         ]);
 
         $login = DB::table("users")
@@ -28,15 +28,22 @@ class MainController extends Controller
                     ->where('password',$request->password)
                     ->get() ; 
        
-
-        if(is_null($login))
+            // dd($login) ; 
+        if($login->isEmpty())
         {
             return back()->with('error', 'Wrong Login Details');
         }
         else
         {
-            return redirect('/');
-        // return back()->with('error', 'Wrong Login Details');
+            if($login[0]->user_role== 0) {
+                return redirect()->to('adminPanel');
+            }elseif($login[0]->user_role == 1){
+                return redirect()->to('visa');
+            }
+            else {
+                return view('errorLogin');
+            }
+            return view('welcome');
         }
 
     }
@@ -60,7 +67,7 @@ class MainController extends Controller
             'details'=> $request->get('details'),
             'password'=>mt_rand(1000, 9999),
             'commercial_register'=> str_replace("public", "storage", $path),
-            
+            'user_role'=> 1 ,            
           ]);
           $user->save();
         return view('welcome');

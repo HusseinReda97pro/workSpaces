@@ -20,9 +20,14 @@ Route::get('/signIn', function () {
 Route::get('/registrate', function () {
     return view('registration');
 });
+Route::get('/admin', function () {
+    return view('adminPanel');
+});
+
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::post('login','MainController@checklogin') ; 
 Route::post('ownerRegistrate','MainController@registrateOwner') ; 
+Route::get('/RequestsData', 'AdminController@index')->name('home');

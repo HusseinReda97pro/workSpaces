@@ -17,7 +17,17 @@
     <link href="{{ asset('css/fontawesome-all.css') }}" rel="stylesheet">
 
     <script src="{{asset('js/app.js')}}"></script>
+    <style>
+        .imagecontainer {
+    padding-left: 0;
+    padding-right: 0;
+    min-height: 250px;
+    background: url(../images/DenizYolu-tasima.jpg) no-repeat center center;
+    background-size: cover;
+    background-attachment: fixed;
+}
 
+    </style>
 </head>
 <body>
     
