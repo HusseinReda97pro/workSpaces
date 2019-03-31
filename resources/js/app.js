@@ -4,8 +4,15 @@
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
+// app.js
+import Vue from 'vue'
+import BootstrapVue from 'bootstrap-vue'
 
+Vue.use(BootstrapVue)
 require('./bootstrap');
+// app.js
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
 
 window.Vue = require('vue');
 
