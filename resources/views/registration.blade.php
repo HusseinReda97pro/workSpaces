@@ -126,7 +126,7 @@
         </div>
         <div class="form-group">
         <label>Commercial Register</label>
-        <input type="file" name="commercial_register" id="photo" required>
+        <input type="file" name="photo" id="photo" required>
         <small><strong>Hint: </strong>Capture your place Commercial Register , to be trusted from website .</small>
         </div>
         <div class="form-group">

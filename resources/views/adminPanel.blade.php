@@ -41,7 +41,7 @@
             <td>{{$request->user_name}}</td>
             <td>{{$request->email}}</td>
             <td>{{$request->user_phone}}</td>
-            <td>photo</td>
+            <td><a href="{{ URL('commercialRegister/'.$request->commercial_register )}}">Preview</a></td>
             <td>
                 <a href="{{ URL('acceptRequest/'.$request->id )}}" class="btn btn-primary btn-sm">Accept</a>
                 <a href="{{ URL('deleteRequest/'.$request->id )}}" class="btn btn-danger btn-sm"><span style="color:white;">Reject</span></a>
