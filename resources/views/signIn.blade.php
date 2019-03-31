@@ -282,7 +282,7 @@ input[type=email]:placeholder , input[type=password]:placeholder {
 
       <!-- Icon -->
       <div class="fadeIn first">
-        <img src="{{asset('images/workspace.jpg')}}" id="icon" alt="Workspace logo" style="width:190px ; lenght:150px; margin-bottom:15px;"/>
+        <img src="{{asset('images/workspace.png')}}" id="icon" alt="Workspace logo" style="width:190px ; lenght:150px; margin-bottom:15px;"/>
       </div>
 
       @if (count($errors) > 0)

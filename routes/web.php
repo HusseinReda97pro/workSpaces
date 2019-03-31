@@ -20,6 +20,10 @@ Route::get('/signIn', function () {
 Route::get('/registrate', function () {
     return view('registration');
 });
+Route::get('/commercialRegister/{photo}', function ($photo) {
+    return view('commercialRegister', ['photo' =>$photo]);
+});
+
 
 
 
