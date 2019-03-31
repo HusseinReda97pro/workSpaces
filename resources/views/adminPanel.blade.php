@@ -29,27 +29,26 @@
             </tr>
         </thead>
         <tbody>
+        @foreach($user_requests as $request)
             <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
+            <th scope="row">{{$request->id}}</th>
+            <td>{{$request->user_name}}</td>
+            <td>{{$request->email}}</td>
+            <td>{{$request->user_phone}}</td>
             <td>photo</td>
             <td>
-                <button class="btn btn-primary btn-sm">Accept</button>
-                <button class="btn btn-danger btn-sm">Reject</button>
+                <a href="{{ URL('acceptRequest/'.$request->id )}}" class="btn btn-primary btn-sm">Accept</a>
+                <a href="{{ URL('deleteRequest/'.$request->id )}}" class="btn btn-danger btn-sm"><span style="color:white;">Reject</span></a>
             </td>
             </tr>
+            @endforeach
         </tbody>
         </table>
 
                 
         </div>
     </div>
-    <!-- //////////////////////////////////
-    <div class="tab-pane fade" id="activate" role="tabpanel" aria-labelledby="activate-tab">
-        Hey
-    </div> -->
+   
 </div>
     
 @endsection
