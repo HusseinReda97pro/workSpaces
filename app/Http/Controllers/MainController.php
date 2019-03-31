@@ -75,7 +75,7 @@ class MainController extends Controller
             'user_role'=> 1 ,            
           ]);
           $user->save();
-        return view('welcome');
+          return view('registrated', ['user_name' =>$user->user_name]);
     }   
     function logout()
     {
