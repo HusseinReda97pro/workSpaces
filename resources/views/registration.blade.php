@@ -122,7 +122,7 @@
         </div>
         <div class="form-group">
         <label>Phone Number</label>
-        	<input type="phone" class="form-control" name="user_phone" placeholder="+0123456789" pattern= "[0-9]" required="required">
+        	<input type="phone" class="form-control" name="user_phone" placeholder="+0123456789" pattern= "[0-9]{11}" required="required">
         </div>
         <div class="form-group">
         <label>Commercial Register</label>
