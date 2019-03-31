@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\sendMail;
 use Illuminate\Http\Request;
 use DB ;
 use Illuminate\Support\Facades\Mail;
+
 
 class AdminController extends Controller
 {
@@ -74,6 +76,7 @@ class AdminController extends Controller
         DB::table('users')
             ->where('id', $id)
             ->update(['state' => 1]);
+             $this->sendAcceptMail();
             return redirect()->to('/RequestsData');
         
     }
@@ -87,12 +90,13 @@ class AdminController extends Controller
     public function deleteRequest($id)
     {
         DB::table('users')->where('id', $id)->delete();
+        $this->sendRejectedMail();
         return redirect()->to('/RequestsData');
     }
-    public function sendMail(){
-        Mail::send(['text'=>'mail'],['name','work spaces'],function ($message){
-            $message->to('pro.hussein.reda@gmail.com')->subject("Hi!!");
-            $message->form('mm4041156@gmail.com');
-        });
+    public function sendAcceptMail(){
+        Mail::to('pro.hussein.reda@gmail.com')->send(new sendMail(1));
+    }
+    public function sendRejectedMail(){
+        Mail::to('pro.hussein.reda@gmail.com')->send(new sendMail(0));
     }
 }
