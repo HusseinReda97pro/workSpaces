@@ -1,6 +1,12 @@
 @extends('layout.app')
 
 @section('content')
+    <a class="btn badge-light" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('frm-logout').submit();">
+        Logout
+    </a>
+    <form id="frm-logout" action="{{ route('logout') }}" method="POST" style="display: none;">
+        {{ csrf_field() }}
+    </form>
 <div class="col-sm-12 imagecontainer"></div>
 <div class="container">
     <div class="row">

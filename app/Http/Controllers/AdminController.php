@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use DB ; 
+use DB ;
+use Illuminate\Support\Facades\Mail;
+
 class AdminController extends Controller
 {
     /**
@@ -86,5 +88,11 @@ class AdminController extends Controller
     {
         DB::table('users')->where('id', $id)->delete();
         return redirect()->to('/RequestsData');
+    }
+    public function sendMail(){
+        Mail::send(['text'=>'mail'],['name','work spaces'],function ($message){
+            $message->to('pro.hussein.reda@gmail.com')->subject("Hi!!");
+            $message->form('mm4041156@gmail.com');
+        });
     }
 }

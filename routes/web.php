@@ -34,5 +34,7 @@ Route::get('/acceptRequest/{id}', 'AdminController@updateState');
 Route::get('/deleteRequest/{id}', 'AdminController@deleteRequest');
 // Owner Controller
 Route::get('/ownerPanel/{id}', 'OwnerController@show');
+Route::get('/send', 'AdminController@sendMail');
+
 
  
