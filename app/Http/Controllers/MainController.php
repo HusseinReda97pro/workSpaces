@@ -28,7 +28,7 @@ class MainController extends Controller
                     ->where('password',$request->password)
                     ->get() ; 
        
-            // dd($login) ; 
+            
         if($login->isEmpty())
         {
             return back()->with('error', 'Wrong Login Details');
@@ -38,7 +38,12 @@ class MainController extends Controller
             if($login[0]->user_role== 0) {
                 return redirect()->to('/RequestsData');
             }elseif($login[0]->user_role == 1){
-                return redirect()->to('/');
+                return redirect()->to('/ownerPanel/'.$login[0]->id);
+                // return redirect()->action(
+                //     'OwnerController@show', ['id' => $login[0]->id]
+                // );
+                
+                
             }
             else {
                 return view('errorLogin');

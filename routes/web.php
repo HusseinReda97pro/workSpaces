@@ -20,9 +20,7 @@ Route::get('/signIn', function () {
 Route::get('/registrate', function () {
     return view('registration');
 });
-Route::get('/admin', function () {
-    return view('adminPanel');
-});
+
 
 
 Auth::routes();
@@ -30,7 +28,11 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::post('login','MainController@checklogin') ; 
 Route::post('ownerRegistrate','MainController@registrateOwner') ; 
+// Admin Controller
 Route::get('/RequestsData', 'AdminController@index');
 Route::get('/acceptRequest/{id}', 'AdminController@updateState');
 Route::get('/deleteRequest/{id}', 'AdminController@deleteRequest');
+// Owner Controller
+Route::get('/ownerPanel/{id}', 'OwnerController@show');
+
  
