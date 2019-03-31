@@ -22,6 +22,7 @@
     padding-left: 0;
     padding-right: 0;
     min-height: 250px;
+    opacity: 1.0;
     background: url(../images/DenizYolu-tasima.jpg) no-repeat center center;
     background-size: cover;
     background-attachment: fixed;
