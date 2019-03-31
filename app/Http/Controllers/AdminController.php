@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use DB ; 
 class AdminController extends Controller
 {
     /**
@@ -13,7 +13,7 @@ class AdminController extends Controller
      */
     public function index()
     {
-        $user_requests = DB::select('select * from users where user_type = 1 AND state= 0');    
+        $user_requests = DB::select('select * from users where user_role = 1 AND state= 0');    
         return view('adminPanel', ['user_requests' => $user_requests]);
     }
 
@@ -67,9 +67,13 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function updateState(Request $request, $id)
     {
-        //
+        DB::table('users')
+            ->where('id', $id)
+            ->update(['state' => 1]);
+            return redirect()->to('/RequestsData');
+        
     }
 
     /**
@@ -78,8 +82,9 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function deleteRequest($id)
     {
-        //
+        DB::table('users')->where('id', $id)->delete();
+        return redirect()->to('/RequestsData');
     }
 }

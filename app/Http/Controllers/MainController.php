@@ -36,7 +36,7 @@ class MainController extends Controller
         else
         {
             if($login[0]->user_role== 0) {
-                return redirect()->to('/admin');
+                return redirect()->to('/RequestsData');
             }elseif($login[0]->user_role == 1){
                 return redirect()->to('/');
             }
