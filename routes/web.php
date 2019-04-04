@@ -27,18 +27,22 @@ Route::get('/commercialRegister/{photo}', function ($photo) {
 
 
 
-Auth::routes();
+//Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
-Route::post('login','MainController@checklogin') ; 
-Route::post('ownerRegistrate','MainController@registrateOwner') ; 
-// Admin Controller
-Route::get('/RequestsData', 'AdminController@index');
-Route::get('/acceptRequest/{id}', 'AdminController@updateState');
-Route::get('/deleteRequest/{id}', 'AdminController@deleteRequest');
-// Owner Controller
-Route::get('/ownerPanel/{id}', 'OwnerController@show');
-Route::get('/send', 'AdminController@sendMail');
+// Route::get('/home', 'HomeController@index')->name('home');
+// Route::post('login','MainController@checklogin') ; 
+// Route::post('ownerRegistrate','MainController@registrateOwner') ; 
+// // Admin Controller
+// Route::get('/RequestsData', 'AdminController@index');
+// Route::get('/acceptRequest/{id}', 'AdminController@updateState');
+// Route::get('/deleteRequest/{id}', 'AdminController@deleteRequest');
+// // Owner Controller
+// Route::get('/ownerPanel/{id}', 'OwnerController@show');
+// Route::get('/send', 'AdminController@sendMail');
 
 
- 
+Route ::get('/main','MainController@index');
+Route ::post('/main/checklogin','MainController@checklogin');
+Route ::get('main/successlogin','MainController@successlogin');
+Route ::get('main/logout','MainController@logout');
+
