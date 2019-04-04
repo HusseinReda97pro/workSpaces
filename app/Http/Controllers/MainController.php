@@ -6,8 +6,8 @@ use Illuminate\Http\Request;
 use DB ; 
 use App\User ;
 use Illuminate\Support\Facades\Storage;
-
-
+use Validator;
+use Auth;
 class MainController extends Controller
 {
     //
@@ -27,9 +27,8 @@ class MainController extends Controller
                     ->where('email',$request->email)
                     ->where('password',$request->password)
                     ->get() ; 
-       
-            
-        if($login->isEmpty())
+
+       if($login->isEmpty())
         {
             return back()->with('error', 'Wrong Login Details');
         }
@@ -38,19 +37,27 @@ class MainController extends Controller
             if($login[0]->user_role== 0) {
                 return redirect()->to('/RequestsData');
             }elseif($login[0]->user_role == 1){
-                return redirect()->to('/ownerPanel/'.$login[0]->id);
+                return redirect()->to('/ownerPanel/'.$login[0]->id);}
                 // return redirect()->action(
                 //     'OwnerController@show', ['id' => $login[0]->id]
-                // );
-                
-                
-            }
-            else {
+                // );  
+            else{
                 return view('errorLogin');
             }
             return view('welcome');
         }
+    }
 
+            
+    function successlogin()
+    {
+     return view('successlogin');
+    }
+
+    function logout()
+    {
+     Auth::logout();
+     return redirect('main');
     }
 
     public function registrateOwner(Request $request)
@@ -77,10 +84,6 @@ class MainController extends Controller
           $user->save();
           return view('registrated', ['user_name' =>$user->user_name]);
     }   
-    function logout()
-    {
-     Auth::logout();
-     return redirect('main');
-    }
+   
 }
 
