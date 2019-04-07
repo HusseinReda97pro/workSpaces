@@ -12,10 +12,10 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('layout.app');
 });
 Route::get('/signIn', function () {
-    return view('signIn');
+    return view('login');
 });
 Route::get('/registrate', function () {
     return view('registration');
@@ -33,9 +33,9 @@ Route::get('/commercialRegister/{photo}', function ($photo) {
 // Route::post('login','MainController@checklogin') ; 
 // Route::post('ownerRegistrate','MainController@registrateOwner') ; 
 // // Admin Controller
-// Route::get('/RequestsData', 'AdminController@index');
-// Route::get('/acceptRequest/{id}', 'AdminController@updateState');
-// Route::get('/deleteRequest/{id}', 'AdminController@deleteRequest');
+Route::get('/RequestsData', 'AdminController@index');
+Route::get('/acceptRequest/{id}', 'AdminController@updateState');
+Route::get('/deleteRequest/{id}', 'AdminController@deleteRequest');
 // // Owner Controller
 // Route::get('/ownerPanel/{id}', 'OwnerController@show');
 // Route::get('/send', 'AdminController@sendMail');
@@ -44,5 +44,5 @@ Route::get('/commercialRegister/{photo}', function ($photo) {
 Route ::get('/main','MainController@index');
 Route ::post('/main/checklogin','MainController@checklogin');
 Route ::get('main/successlogin','MainController@successlogin');
-Route ::get('main/logout','MainController@logout');
+Route ::post('main/logout','MainController@logout');
 

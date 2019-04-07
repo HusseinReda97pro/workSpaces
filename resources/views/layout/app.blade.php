@@ -9,13 +9,18 @@
     <title>Workplace</title>
 
     <link rel="dns-prefetch"  href="https://fonts.gstatic.com" />
+<!-- import CSS -->
+<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+<!-- import JavaScript -->
+<script src="https://unpkg.com/element-ui/lib/index.js"></script>
 
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/agency.css') }}" rel="stylesheet">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     <link href="{{ asset('css/fontawesome-all.css') }}" rel="stylesheet">
-
+<!-- import JavaScript -->
+<script src="https://unpkg.com/element-ui/lib/index.js"></script>
     <script src="{{asset('js/app.js')}}"></script>
     <style>
         .imagecontainer {
@@ -34,11 +39,18 @@
     
     
     <div id="app">
+    
         @yield('content')
     </div>
    
     <script src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 </body>
+<!-- import Vue before Element -->
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+  <!-- import JavaScript -->
+  <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+  @yield('scripts')
+  <script src="{{asset('js/tryelement.js')}}"></script>
 <script src="{{asset('js/jquery-1.9.1.min.js')}}"></script>
 </html>

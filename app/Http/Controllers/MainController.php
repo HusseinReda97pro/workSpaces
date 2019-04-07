@@ -13,7 +13,7 @@ class MainController extends Controller
     //
     function index()
     {
-     return view('login');
+     return view('welcome');
     }
     function checklogin(Request $request)
     {
@@ -57,7 +57,7 @@ class MainController extends Controller
     function logout()
     {
      Auth::logout();
-     return redirect('main');
+     return redirect()->to('/main');
     }
 
     public function registrateOwner(Request $request)
