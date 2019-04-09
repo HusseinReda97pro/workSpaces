@@ -12,7 +12,10 @@
 */
 
 Route::get('/', function () {
-    return view('layout.app');
+    return view('AdminPanel.panelLayout');
+});
+Route::get('/showRequests', function () {
+    return view('AdminPanel.adminShowReguests');
 });
 Route::get('/signIn', function () {
     return view('login');
@@ -30,8 +33,8 @@ Route::get('/commercialRegister/{photo}', function ($photo) {
 //Auth::routes();
 
 // Route::get('/home', 'HomeController@index')->name('home');
-// Route::post('login','MainController@checklogin') ; 
-// Route::post('ownerRegistrate','MainController@registrateOwner') ; 
+// Route::post('login','MainController@checklogin') ;
+// Route::post('ownerRegistrate','MainController@registrateOwner') ;
 // // Admin Controller
 Route::get('/RequestsData', 'AdminController@index');
 Route::get('/acceptRequest/{id}', 'AdminController@updateState');

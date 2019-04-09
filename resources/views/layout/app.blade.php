@@ -17,11 +17,13 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/agency.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+{{--    <link href="{{ asset('css/style.css') }}" rel="stylesheet">--}}
     <link href="{{ asset('css/fontawesome-all.css') }}" rel="stylesheet">
 <!-- import JavaScript -->
 <script src="https://unpkg.com/element-ui/lib/index.js"></script>
     <script src="{{asset('js/app.js')}}"></script>
+    @yield('style')
+
     <style>
         .imagecontainer {
     padding-left: 0;
@@ -36,14 +38,28 @@
     </style>
 </head>
 <body>
-    
-    
     <div id="app">
-    
-        @yield('content')
+        <el-menu
+            class="el-menu-demo"
+            mode="horizontal"
+            @select="handleSelect"
+            background-color="#545c64"
+            text-color="#fff"
+            active-text-color="#ffd04b">
+            <el-menu-item><img  src="images/workspace.png" style="height:120% ;width: 50%;color: white;padding: -190px; " alt="">We Make Things easy , We Save Time</el-menu-item>
+            <el-menu-item index="1">Home</el-menu-item>
+            <el-menu-item index="2">Search WorkSpace</el-menu-item>
+            <el-menu-item index="3">Login</el-menu-item>
+            <el-menu-item index="3">Registration</el-menu-item>
+        </el-menu>
+
+
+
     </div>
-   
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+@yield('content')
+
+
+    {{--<script src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>--}}
 
 </body>
 <!-- import Vue before Element -->
@@ -52,5 +68,5 @@
   <script src="https://unpkg.com/element-ui/lib/index.js"></script>
   @yield('scripts')
   <script src="{{asset('js/tryelement.js')}}"></script>
-<script src="{{asset('js/jquery-1.9.1.min.js')}}"></script>
+{{--<script src="{{asset('js/jquery-1.9.1.min.js')}}"></script>--}}
 </html>
