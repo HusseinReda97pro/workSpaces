@@ -40,8 +40,16 @@
                 </el-table-column>
                 <el-table-column label="Operations">
                     <template slot-scope="scope">
-                        <el-button  size="mini" type="success" @click="handleAccept(scope.$index, scope.row)">Accept</el-button>
-                        <el-button size="mini" type="danger" @click="handleDelete(scope.$index, scope.row)">Delete</el-button>
+                    <el-button
+                            slot-scope="scope"
+                            size="mini"
+                            @click="handleActivation( scope.row)"
+                            :type="scope.row.state === 1 ? 'danger' : 'primary'"
+                    >
+
+                    </el-button>                      
+                        <p v-if="scope.row.state === 1"><b>Deactivate</b></p>
+                        <p v-else><b>Activate</b></p>
                     </template>
                 </el-table-column>
             </el-table>
