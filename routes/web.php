@@ -50,7 +50,7 @@ Route::get('/addPayment', function () {
 // // Admin Controller
 Route::get('/RequestsData', 'AdminController@index');
 Route::post('/acceptRequest/{id}', 'AdminController@updateState');
-Route::get('/deleteRequest/{id}', 'AdminController@deleteRequest');
+Route::post('/deleteRequest/{id}', 'AdminController@deleteRequest');
 // // Owner Controller
 // Route::get('/ownerPanel/{id}', 'OwnerController@show');
 // Route::get('/send', 'AdminController@sendMail');

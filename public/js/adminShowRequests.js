@@ -47,7 +47,15 @@ new Vue({
             // console.log(row['id']);
         },
         handleDelete(index, row) {
-            console.log(index, row);
+            var self = this;
+            axios.post('/deleteRequest/'+row.id,row)
+                .then(function (response) {
+                    console.log(response);
+                    self.getContent();
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
         }
 
     }
