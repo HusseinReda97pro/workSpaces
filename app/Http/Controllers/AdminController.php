@@ -26,6 +26,17 @@ class AdminController extends Controller
             ->orderby('created_at','desc')->get() ;
         return $user_requests;
     }
+    public function showpendingRequests()
+    {
+
+        $user_requests = DB::table('users')
+
+            ->select('users.id','users.user_name','users.user_phone','users.email','users.created_at','users.state','users.activate')
+            ->where('users.state','=',1)
+            ->where('users.activate','=',0)
+            ->orderby('created_at','desc')->get() ;
+        return $user_requests;
+    }
 
     /**
      * Show the form for creating a new resource.
