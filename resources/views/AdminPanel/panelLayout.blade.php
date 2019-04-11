@@ -12,71 +12,82 @@
         .link-handle-font a:active {
             color: #ffed4a;
         }
+        /*Side Nav*/
+        .sidenav {
+            height: 380px;
+            width: 220px;
+            /*position: fixed;*/
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: #3c3c3c;
+            overflow-x: hidden;
+            padding-top: 20px;
+        }
+
+        .sidenav a {
+            padding: 6px 8px 6px 40px;
+            text-decoration: none;
+            font-size: 17px;
+            color: lightgrey;
+            display: block;
+            transition: font-size .15s;
+        }
+        .sidenav a i {
+            padding-right: 10px;
+        }
+
+        .sidenav a:hover {
+            color: white;
+            background-color: #909295;
+            font-size: 18px;
+        }
+
+        .main {
+            margin-left: 160px; /* Same as the width of the sidenav */
+            font-size: 14px; /* Increased text to enable scrolling */
+            padding: 0px 10px;
+        }
+
+        @media screen and (max-height: 450px) {
+            .sidenav {padding-top: 15px;}
+            .sidenav a {font-size: 18px;}
+        }
 
     </style>
 
 @endsection
 @section('content')
-    <div id="panelLayout">
         {{--<el-container style="height: 500px; border: 1px solid #eee">--}}
             {{--<el-aside width="200px" style="background-color: rgb(238, 241, 246)">--}}
-        <el-row class="tac">
-            <el-col :span="4">
-                <el-menu
-                    default-active="1"
-                    class="el-menu-vertical-demo"
-                    @open="handleOpen"
-                    @close="handleClose"
-                    background-color="#545c64"
-                    text-color="#fff"
-                    active-text-color="#ffd04b">
-                    <el-menu-item index="1">
-                        <i class="el-icon-menu"></i>
-                        <span
-                            class="link-handle-font"
-                        >
-                            <a href={{url('')}}>Show Requests</a>
-                        </span>
-                    </el-menu-item>
-                    <el-menu-item index="2">
-                        <i class="el-icon-menu"></i>
-                        <span
-                            class="link-handle-font"
-                        >
-                            <a href={{url('')}}>pending Requests</a>
-                        </span>
-                    </el-menu-item>
-                    <el-menu-item index="3">
-                        <i class="el-icon-menu"></i>
-                        <span
-                            class="link-handle-font"
-                        >
-                            <a href={{url('')}}>Add Cities & Regions</a>
-                        </span>
-                    </el-menu-item>
-                    <el-menu-item index="4">
-                        <i class="el-icon-menu"></i>
-                        <span
-                            class="link-handle-font"
-                        >
-                            <a href='#'>Add payment info</a>
-                        </span>
-                    </el-menu-item>
+        <div class="row">
+            <div class="col col-md-2">
+            <div class="sidenav">
+                <a href={{url('/showRequests')}}><i class="fas fa-glasses"></i>Show Requests</a>
+                <a href="{{url('/pendingRequests')}}"><i class="fas fa-glasses"></i>Pending Requests</a>
+                <a href="{{url('/citiesRegions')}}"><i class="fas fa-city"></i>Cities & Regions</a>
+                <a href="{{url('/addPayment')}}"><i class="fab fa-cc-mastercard"></i>Add Payment</a>
+                <img src="{{asset('images/workspace.png')}}" id="icon" alt="Workspace logo" style="width:180px ; lenght:140px; padding-left: 30px; "/>
+            </div>
+            </div>
+            <div class="col col-md-10">
+                @yield('adminPanelContent')
+            </div>
+        </div>
 
 
-                </el-menu>
-            </el-col>
-            <el-col :span="12"><div class="grid-content bg-purple-light">
-                    @yield('adminPanelContent')
-                </div>
+            {{--<el-col :span="20"><div class="grid-content bg-purple-light">--}}
+                    {{----}}
+                {{--</div>--}}
 
-            </el-col>
-        </el-row>
+            {{--</el-col>--}}
 
-    </div>
+
+
+
 
 @endsection
 @section('scripts')
-    <script src="{{asset('js/panelLayout.js')}}"></script>
+    {{--<script src="{{asset('js/panelLayout.js')}}"></script>--}}
     @yield('adminPanelScript')
 @endsection

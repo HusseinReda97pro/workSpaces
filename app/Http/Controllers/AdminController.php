@@ -17,8 +17,14 @@ class AdminController extends Controller
      */
     public function index()
     {
-        $user_requests = DB::select('select * from users where user_role = 1 AND state= 0');    
-        return view('adminPanel', ['user_requests' => $user_requests]);
+
+        $user_requests = DB::table('users')
+
+            ->select('users.id','users.user_name','users.user_phone','users.email','users.created_at','users.state','users.activate')
+            ->where('users.state','=',0)
+            ->where('users.activate','=',0)
+            ->orderby('created_at','desc')->get() ;
+        return $user_requests;
     }
 
     /**
@@ -73,12 +79,12 @@ class AdminController extends Controller
      */
     public function updateState(Request $request, $id)
     {
-        DB::table('users')
+        $true = DB::table('users')
             ->where('id', $id)
             ->update(['state' => 1]);
              $this->sendAcceptMail();
-            return redirect()->to('/RequestsData');
-        
+            return $true ;
+
     }
 
     /**

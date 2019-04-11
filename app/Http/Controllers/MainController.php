@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use DB ; 
+use DB ;
 use App\User ;
 use Illuminate\Support\Facades\Storage;
 use Validator;
@@ -26,7 +26,7 @@ class MainController extends Controller
         $login = DB::table("users")
                     ->where('email',$request->email)
                     ->where('password',$request->password)
-                    ->get() ; 
+                    ->get() ;
 
        if($login->isEmpty())
         {
@@ -35,12 +35,10 @@ class MainController extends Controller
         else
         {
             if($login[0]->user_role== 0) {
-                return redirect()->to('/RequestsData');
+                return redirect()->to('/showRequests');
             }elseif($login[0]->user_role == 1){
-                return redirect()->to('/ownerPanel/'.$login[0]->id);}
-                // return redirect()->action(
-                //     'OwnerController@show', ['id' => $login[0]->id]
-                // );  
+                return redirect()->to('/ownerPanel/'.$login[0]->id);
+            }
             else{
                 return view('errorLogin');
             }
@@ -48,7 +46,7 @@ class MainController extends Controller
         }
     }
 
-            
+
     function successlogin()
     {
      return view('successlogin');
@@ -79,11 +77,11 @@ class MainController extends Controller
             'details'=> $request->get('details'),
             'password'=>mt_rand(1000, 9999),
             'commercial_register'=> str_replace("public", "storage", $path),
-            'user_role'=> 1 ,            
+            'user_role'=> 1 ,
           ]);
           $user->save();
           return view('registrated', ['user_name' =>$user->user_name]);
-    }   
-   
+    }
+
 }
 

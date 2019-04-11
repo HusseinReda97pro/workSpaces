@@ -2,7 +2,8 @@ new Vue({
     el: '#panelLayout',
     data:
         {
-            isCollapse: true
+            isCollapse: true,
+
         },
     methods:
         {
@@ -12,5 +13,6 @@ new Vue({
             handleClose(key, keyPath) {
                 console.log(key, keyPath);
             }
+
         }
 });

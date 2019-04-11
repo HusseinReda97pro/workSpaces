@@ -12,13 +12,11 @@
 */
 
 Route::get('/', function () {
-    return view('AdminPanel.panelLayout');
-});
-Route::get('/showRequests', function () {
-    return view('AdminPanel.adminShowReguests');
+    return view('welcome');
 });
 Route::get('/signIn', function () {
-    return view('login');
+//    dd('hey');
+    return view('signIn');
 });
 Route::get('/registrate', function () {
     return view('registration');
@@ -27,6 +25,20 @@ Route::get('/commercialRegister/{photo}', function ($photo) {
     return view('commercialRegister', ['photo' =>$photo]);
 });
 
+// Admin Panel //
+Route::get('/showRequests', function () {
+    return view('AdminPanel.adminShowReguests');
+});
+Route::get('/pendingRequests', function () {
+    return view('AdminPanel.pendingRequests');
+});
+
+Route::get('/citiesRegions', function () {
+    return view('AdminPanel.citiesRegions');
+});
+Route::get('/addPayment', function () {
+    return view('AdminPanel.addPayment');
+});
 
 
 
@@ -37,7 +49,7 @@ Route::get('/commercialRegister/{photo}', function ($photo) {
 // Route::post('ownerRegistrate','MainController@registrateOwner') ;
 // // Admin Controller
 Route::get('/RequestsData', 'AdminController@index');
-Route::get('/acceptRequest/{id}', 'AdminController@updateState');
+Route::post('/acceptRequest/{id}', 'AdminController@updateState');
 Route::get('/deleteRequest/{id}', 'AdminController@deleteRequest');
 // // Owner Controller
 // Route::get('/ownerPanel/{id}', 'OwnerController@show');

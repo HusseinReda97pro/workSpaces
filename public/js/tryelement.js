@@ -1,13 +1,16 @@
+
 new Vue({
     el: '#app',
     data:
         {
-        activeIndex: '1',
-            activeIndex2: '1'
+        activeIndex: ''
+
     },
+
     methods : {
+
         handleSelect(key, keyPath) {
-            console.log(key, keyPath);
+            self.activeIndex = key ;
         }
 
     }

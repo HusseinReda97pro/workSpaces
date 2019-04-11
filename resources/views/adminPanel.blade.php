@@ -1,3 +1,11 @@
+<?php
+session()->regenerate();
+if(Session('id')==null){
+    echo "ليس لديك الصلاحيات للدخول على تلك الصفحة";
+}else{
+    }
+    ?>
+
 @extends('layout.app')
 
 @section('content')
@@ -20,7 +28,7 @@
             </div>
     </div>
     <!-- ////////////////////////////////////////// -->
-            
+
     <div class="tab-content" id="myTabContent">
         <div class="tab-pane fade show active" id="requests" role="tabpanel" aria-labelledby="requests-tab">
         <table class="table">
@@ -51,10 +59,10 @@
         </tbody>
         </table>
 
-                
+
         </div>
     </div>
-   
+
 </div>
-    
+
 @endsection
