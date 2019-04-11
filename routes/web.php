@@ -51,6 +51,7 @@ Route::get('/addPayment', function () {
 Route::get('/RequestsData', 'AdminController@index');
 Route::post('/acceptRequest/{id}', 'AdminController@updateState');
 Route::post('/deleteRequest/{id}', 'AdminController@deleteRequest');
+Route::get('/showpending','AdminController@showpendingRequests');
 // // Owner Controller
 // Route::get('/ownerPanel/{id}', 'OwnerController@show');
 // Route::get('/send', 'AdminController@sendMail');
