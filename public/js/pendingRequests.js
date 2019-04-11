@@ -7,7 +7,8 @@ new Vue({
     el: '#adminShowRequests',
     data:
         {
-            tableData: []
+            tableData: [],
+            state:''
         },
     mounted: function () {
         var self = this;
@@ -23,7 +24,7 @@ new Vue({
         // },
         getContent: function () {
             var self = this;
-            axios.get('/RequestsData')
+            axios.get('/showpending')
                             .then(function (response) {
                                 console.log(self.tableData);
                                 self.tableData = response.data;
@@ -34,24 +35,17 @@ new Vue({
                     console.log(error);
                 });
         },
-        handleAccept(index, row) {
+        handleActivation : function(row) {
+
             var self = this;
-            axios.post('/acceptRequest/'+row.id,row)
+
+            console.log(row);
+            axios.post('/updateUsersData/'+row.user_id , row)
                 .then(function (response) {
                     console.log(response);
+                    
                     self.getContent();
-                })
-                .catch(function (error) {
-                    console.log(error);
-                });
-            // console.log(row['id']);
-        },
-        handleDelete(index, row) {
-            var self = this;
-            axios.post('/deleteRequest/'+row.id,row)
-                .then(function (response) {
-                    console.log(response);
-                    self.getContent();
+
                 })
                 .catch(function (error) {
                     console.log(error);
