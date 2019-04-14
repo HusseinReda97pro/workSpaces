@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Mail\sendMail;
 use Illuminate\Http\Request;
 use DB ;
+use App\User;
 use Illuminate\Support\Facades\Mail;
 
 
@@ -31,9 +32,9 @@ class AdminController extends Controller
 
         $user_requests = DB::table('users')
 
-            ->select('users.id','users.user_name','users.user_phone','users.email','users.created_at','users.state','users.activate')
+            ->select('users.id','users.user_role','users.user_name','users.user_phone','users.email','users.created_at','users.state','users.activate')
             ->where('users.state','=',1)
-            ->where('users.activate','=',0)
+            ->where('users.user_role','!=',0)
             ->orderby('created_at','desc')->get() ;
         return $user_requests;
     }
@@ -76,9 +77,24 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function updateUserActivate($id)
     {
         //
+        $user = User::find($id);
+        //
+        //$final = $input->only([''])
+        //
+        if($user['activate'] == 0) {
+            $user['activate'] = 1 ;
+        }else {
+            $user['activate'] = 0 ;
+        }
+
+
+        $user->save() ;
+
+        return $user ;
+
     }
 
     /**

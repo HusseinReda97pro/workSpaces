@@ -8,7 +8,7 @@ new Vue({
     data:
         {
             tableData: [],
-            state:''
+            activate:''
         },
     mounted: function () {
         var self = this;
@@ -40,10 +40,10 @@ new Vue({
             var self = this;
 
             console.log(row);
-            axios.post('/updateUsersData/'+row.user_id , row)
+            axios.post('/updateUserActivate/'+row.id , row)
                 .then(function (response) {
                     console.log(response);
-                    
+
                     self.getContent();
 
                 })

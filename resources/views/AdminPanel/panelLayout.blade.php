@@ -31,16 +31,21 @@
             font-size: 17px;
             color: lightgrey;
             display: block;
-            transition: font-size .15s;
+            transition: color , font-size .5s;
         }
         .sidenav a i {
             padding-right: 10px;
+        }
+        .sidenav a i:hover {
+            padding-right: 10px;
+
         }
 
         .sidenav a:hover {
             color: white;
             background-color: #909295;
             font-size: 18px;
+            color: #ffe924;
         }
 
         .main {

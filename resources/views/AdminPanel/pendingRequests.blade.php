@@ -1,4 +1,3 @@
-{{--@extends('layout.app')--}}
 @extends('AdminPanel.panelLayout')
 
 @section('adminPanelContent')
@@ -39,18 +38,17 @@
                     </template>
                 </el-table-column>
                 <el-table-column label="Operations">
-                    <template slot-scope="scope">
                     <el-button
-                            slot-scope="scope"
-                            size="mini"
-                            @click="handleActivation( scope.row)"
-                            :type="scope.row.state === 1 ? 'danger' : 'primary'"
+                        slot-scope="scope"
+                        size="mini"
+                        @click="handleActivation( scope.row)"
+                        :type="scope.row.activate === 1 ? 'danger' : 'primary'"
                     >
 
-                    </el-button>                      
-                        <p v-if="scope.row.state === 1"><b>Deactivate</b></p>
-                        <p v-else><b>Activate</b></p>
-                    </template>
+                        <span v-if="scope.row.activate === 1">Deactivate</span>
+                        <span v-else>Activate</span>
+
+                    </el-button>
                 </el-table-column>
             </el-table>
         </template>

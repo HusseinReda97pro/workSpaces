@@ -34,7 +34,7 @@ Route::get('/pendingRequests', function () {
 });
 
 Route::get('/citiesRegions', function () {
-    return view('AdminPanel.citiesRegions');
+    return view('AdminPanel.citiesAndRegions');
 });
 Route::get('/addPayment', function () {
     return view('AdminPanel.addPayment');
@@ -52,6 +52,7 @@ Route::get('/RequestsData', 'AdminController@index');
 Route::post('/acceptRequest/{id}', 'AdminController@updateState');
 Route::post('/deleteRequest/{id}', 'AdminController@deleteRequest');
 Route::get('/showpending','AdminController@showpendingRequests');
+Route::post('/updateUserActivate/{id}','AdminController@updateUserActivate');
 // // Owner Controller
 // Route::get('/ownerPanel/{id}', 'OwnerController@show');
 // Route::get('/send', 'AdminController@sendMail');
