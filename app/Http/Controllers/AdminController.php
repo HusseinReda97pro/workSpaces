@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Mail\sendMail;
 use Illuminate\Http\Request;
 use DB ;
+use App\city ;
 use App\User;
 use Illuminate\Support\Facades\Mail;
 
@@ -36,6 +37,7 @@ class AdminController extends Controller
             ->where('users.state','=',1)
             ->where('users.user_role','!=',0)
             ->orderby('created_at','desc')->get() ;
+
         return $user_requests;
     }
 
@@ -44,9 +46,17 @@ class AdminController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function city(Request $request)
     {
-        //
+       DB::table('city')->insert(
+            ['city_name' => $request->city_name]
+        );
+        $region = DB::table('city')->where('city_name', $request->city_name)->get();
+        DB::table('regions')->insert(
+            ['region_name' => $request->region_name ,'city_id' => $region[0]->city_id]
+        );
+        return $region;
+
     }
 
     /**
@@ -55,9 +65,13 @@ class AdminController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function showCity()
     {
-        //
+        $cities = DB::table('regions')
+            ->join('city','regions.city_id','city.city_id')
+            ->select('regions.region_name','city.*')
+            ->get();
+        return $cities ;
     }
 
     /**
@@ -66,9 +80,12 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function region(Request $request)
     {
-        //
+        DB::table('regions')->insert(
+            ['region_name' => $request->region_name , 'city_id' => $request->city_id]
+        );
+        return 1 ;
     }
 
     /**

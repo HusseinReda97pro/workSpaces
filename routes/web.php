@@ -53,6 +53,11 @@ Route::post('/acceptRequest/{id}', 'AdminController@updateState');
 Route::post('/deleteRequest/{id}', 'AdminController@deleteRequest');
 Route::get('/showpending','AdminController@showpendingRequests');
 Route::post('/updateUserActivate/{id}','AdminController@updateUserActivate');
+Route::post('/addCity','AdminController@city');
+Route::get('/showCities','AdminController@showCity');
+Route::post('/addRegion','AdminController@region');
+
+
 // // Owner Controller
 // Route::get('/ownerPanel/{id}', 'OwnerController@show');
 // Route::get('/send', 'AdminController@sendMail');

@@ -2,71 +2,33 @@ new Vue({
     el: '#citiesAndRegions',
     data:
         {
-            tableData3: [{
-                date: '2016-05-03',
-                name: 'Tom',
-                state: 'California',
-                city: 'Los Angeles',
-                address: 'No. 189, Grove St, Los Angeles',
-                zip: 'CA 90036'
-            }, {
-                date: '2016-05-02',
-                name: 'Tom',
-                state: 'California',
-                city: 'Los Angeles',
-                address: 'No. 189, Grove St, Los Angeles',
-                zip: 'CA 90036'
-            }, {
-                date: '2016-05-04',
-                name: 'Tom',
-                state: 'California',
-                city: 'Los Angeles',
-                address: 'No. 189, Grove St, Los Angeles',
-                zip: 'CA 90036'
-            }, {
-                date: '2016-05-01',
-                name: 'Tom',
-                state: 'California',
-                city: 'Los Angeles',
-                address: 'No. 189, Grove St, Los Angeles',
-                zip: 'CA 90036'
-            }, {
-                date: '2016-05-08',
-                name: 'Tom',
-                state: 'California',
-                city: 'Los Angeles',
-                address: 'No. 189, Grove St, Los Angeles',
-                zip: 'CA 90036'
-            }, {
-                date: '2016-05-06',
-                name: 'Tom',
-                state: 'California',
-                city: 'Los Angeles',
-                address: 'No. 189, Grove St, Los Angeles',
-                zip: 'CA 90036'
-            }, {
-                date: '2016-05-07',
-                name: 'Tom',
-                state: 'California',
-                city: 'Los Angeles',
-                address: 'No. 189, Grove St, Los Angeles',
-                zip: 'CA 90036'
-            }],
-            formInline: {
-                city: ''
+            tableData3 : [],
+            ruleForm: {
+                city_name: '',
+                region_name: '',
             },
-            labelPosition: 'left',
-            formLabelAlign: {
-                name: '',
-                region: '',
-                type: ''
+            rules: {
+                city_name: [
+                    {required: true, message: 'Please input City Name', trigger: 'blur'},
+                    {min: 3, max: 20, message: 'Length should be 3 to 20', trigger: 'blur'}
+                ],
+                region_name: [
+                    {required: true, message: 'Please select Activity zone', trigger: 'change'}
+                ]
             },
-            activate:''
+            activate:''  ,
+        // Region
+            options: [],
+            ruleRegionForm: {
+                city_id: '' ,
+                region_name: ''
+            }
+
         },
     mounted: function () {
         var self = this;
         // self.auth();
-        // self.getContent();
+        self.showCities();
     },
     methods : {
         // auth : function(){
@@ -75,20 +37,44 @@ new Vue({
         //         throw new Error("Something went badly wrong!");
         //     }
         // },
-        getContent: function () {
+        showCities: function () {
             var self = this;
-            axios.get('/showpending')
+            axios.get('/showCities')
                 .then(function (response) {
-                    console.log(self.tableData);
-                    self.tableData = response.data;
-                    console.log(self.tableData);
+                    console.log(response.data);
+                    self.options = response.data;
+                    console.log(self.options);
 
                 })
                 .catch(function (error) {
                     console.log(error);
                 });
         },
+        submitForm() {
+            var self = this ;
+            axios.post('/addCity',self.ruleForm)
+                .then(function (response) {
+                    self.ruleForm.city_name = '';
+                    self.ruleForm.region_name = '';
+                    console.log(response.data);
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+        },
 
+        submitRegionForm() {
+            var self = this ;
+            axios.post('/addRegion',self.ruleRegionForm)
+                .then(function (response) {
+                    self.ruleRegionForm.city_id = '';
+                    self.ruleRegionForm.region_name = '';
+                    console.log(response.data);
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+        }
 
     }
 });
