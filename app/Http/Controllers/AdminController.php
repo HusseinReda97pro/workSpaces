@@ -137,6 +137,16 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    public  function  deleteCity($id) {
+        DB::table('city')->where('city_id', $id)->delete();
+        $true =  DB::table('regions')->where('city_id', $id)->delete();
+        return $true;
+
+    }
+    public function deleteRegion($region_name){
+        $true =  DB::table('regions')->where('region_name', $region_name)->delete();
+        return $true;
+    }
     public function deleteRequest($id)
     {
         $true = DB::table('users')->where('id', $id)->delete();

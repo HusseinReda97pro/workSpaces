@@ -56,6 +56,9 @@ Route::post('/updateUserActivate/{id}','AdminController@updateUserActivate');
 Route::post('/addCity','AdminController@city');
 Route::get('/showCities','AdminController@showCity');
 Route::post('/addRegion','AdminController@region');
+Route::post('/deleteCity/{id}', 'AdminController@deleteCity');
+Route::post('/deleteRegion/{region_name}', 'AdminController@deleteRegion');
+
 
 
 // // Owner Controller

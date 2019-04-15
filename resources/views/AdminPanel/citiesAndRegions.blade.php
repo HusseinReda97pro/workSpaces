@@ -3,7 +3,7 @@
 @section('adminPanelContent')
     <div id="citiesAndRegions">
         <el-row :gutter="20">
-            <el-col :span="12"><div class="grid-content bg-purple">
+            <el-col :span="10"><div class="grid-content bg-purple">
                     <template>
                         <el-table
                             :data="options"
@@ -12,17 +12,28 @@
                                 <el-table-column
                                     prop="city_name"
                                     label="City"
-                                    width="150">
+                                    width="180">
                                 </el-table-column>
                                 <el-table-column
                                     prop="region_name"
                                     label="Region"
-                                    width="150">
+                                    width="180">
                                 </el-table-column>
-                                <el-table-column label="Operations" width="200">
+                                <el-table-column label="Operations" width="100">
                                     <template slot-scope="scope">
-                                        <el-button  size="mini" type="success" ><i class="el-icon-edit"></i>Edit</el-button>
-                                        <el-button size="mini" type="danger" ><i class="el-icon-delete"></i>Delete</el-button>
+                                        {{--<el-button  size="mini" type="success" ><i class="el-icon-edit"></i>Edit</el-button>--}}
+                                        <el-button size="mini" type="danger" @click="dialogVisible = true"><i class="el-icon-delete"></i>Delete</el-button>
+                                        <el-dialog
+                                            title="Delete Operation"
+                                            :visible.sync="dialogVisible"
+                                            width="30%"
+                                            >
+                                            <span>What You Want exactly to Delete .. ? </span>
+                                            <span slot="footer" class="dialog-footer">
+                                                <el-button type="danger" @click="deleteCity(scope.row.city_id)">the City</el-button>
+                                                <el-button type="warning" @click="deleteRegion(scope.row.region_name)">the Region</el-button>
+                                              </span>
+                                        </el-dialog>
                                     </template>
                                 </el-table-column>
                             </el-table-column>
