@@ -24,9 +24,10 @@ class OwnerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function getCities()
     {
-        //
+        $city = DB::table('city')->select('city_id','city_name')->get();
+        return $city ;
     }
 
     /**
@@ -35,9 +36,12 @@ class OwnerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function requestRegion($id)
     {
-        //
+        $regions = DB::table('regions')
+                    ->where('city_id',$id)
+                    ->get();
+        return $regions ;
     }
 
     /**
