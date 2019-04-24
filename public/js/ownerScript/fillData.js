@@ -17,7 +17,8 @@ new Vue({
                 phone2:'',
                 websiteURL:'',
                 fileList: [],
-                desc: ''
+                desc: '',
+                owner_id:''
             },
             rules: {
                 address: [
@@ -73,10 +74,20 @@ new Vue({
                     console.log(error);
                 });
         },
-        submitForm(formName) {
+        submitForm(formName,id) {
+            var self = this ;
+            self.ruleForm.owner_id = id ; 
             this.$refs[formName].validate((valid) => {
                 if (valid) {
+                    axios.post('/placeData',self.ruleForm)
+                        .then(function (response) {
+                            console.log(response.data);
+                        })
+                        .catch(function (error) {
+                            console.log(error);
+                        });
                     alert('submit!');
+                    self.resetForm(formName);
                 } else {
                     console.log('error submit!!');
                     return false;

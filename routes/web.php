@@ -63,6 +63,7 @@ Route::post('/deleteRegion/{region_name}', 'AdminController@deleteRegion');
 Route ::get('/ownerPanel/{id}','OwnerController@index');
 Route ::get('/requestCity','OwnerController@getCities');
 Route ::get('/requestRegion/{city_id}','OwnerController@requestRegion');
+Route ::post('/placeData','OwnerController@storePlace');
 Route ::post('/main/checklogin','MainController@checklogin');
 Route ::get('main/successlogin','MainController@successlogin');
 Route ::post('main/logout','MainController@logout');
