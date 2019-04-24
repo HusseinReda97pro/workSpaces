@@ -58,7 +58,7 @@
             <el-menu-item index="1"><a href="{{ URL('/' )}}">Home</a></el-menu-item>
             <el-menu-item index="2">Search WorkSpace</el-menu-item>
             <el-menu-item index="3"><a href="{{ URL('/signIn' )}}">Login</a></el-menu-item>
-            <el-menu-item index="4">Registration</el-menu-item>
+            <el-menu-item index="4"><a href="{{ URL('/registration' )}}">Registration</a></el-menu-item>
         </el-menu>
 
 

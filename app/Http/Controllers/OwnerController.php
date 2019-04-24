@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use DB ; 
+use DB ;
 class OwnerController extends Controller
 {
     /**
@@ -13,6 +13,10 @@ class OwnerController extends Controller
      */
     public function index($id)
     {
+//        $owner = DB::table('users')
+//                ->where('id',$id)
+//                ->select('name')->get();
+        return view('OwnerPanel.placeData',['id'=>$id]) ;
     }
 
     /**
@@ -45,9 +49,9 @@ class OwnerController extends Controller
     public function show($id)
     {
         $owner_info = DB::table('users')
-                            ->where('id',$id)->get(); 
+                            ->where('id',$id)->get();
          return view('ownerPanel', ['user_name' =>$owner_info[0]->user_name]);
-        
+
     }
 
     /**

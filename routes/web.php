@@ -18,7 +18,7 @@ Route::get('/signIn', function () {
 //    dd('hey');
     return view('signIn');
 });
-Route::get('/registrate', function () {
+Route::get('/registration', function () {
     return view('registration');
 });
 Route::get('/commercialRegister/{photo}', function ($photo) {
@@ -44,9 +44,7 @@ Route::get('/addPayment', function () {
 
 //Auth::routes();
 
-// Route::get('/home', 'HomeController@index')->name('home');
-// Route::post('login','MainController@checklogin') ;
-// Route::post('ownerRegistrate','MainController@registrateOwner') ;
+
 // // Admin Controller
 Route::get('/RequestsData', 'AdminController@index');
 Route::post('/acceptRequest/{id}', 'AdminController@updateState');
@@ -62,11 +60,7 @@ Route::post('/deleteRegion/{region_name}', 'AdminController@deleteRegion');
 
 
 // // Owner Controller
-// Route::get('/ownerPanel/{id}', 'OwnerController@show');
-// Route::get('/send', 'AdminController@sendMail');
-
-
-Route ::get('/main','MainController@index');
+Route ::get('/ownerPanel/{id}','OwnerController@index');
 Route ::post('/main/checklogin','MainController@checklogin');
 Route ::get('main/successlogin','MainController@successlogin');
 Route ::post('main/logout','MainController@logout');

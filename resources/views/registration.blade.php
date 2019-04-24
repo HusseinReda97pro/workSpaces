@@ -1,15 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
-<title>Registration Form</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
+{{--<!DOCTYPE html>--}}
+{{--<html lang="en">--}}
+{{--<head>--}}
+{{--<meta charset="utf-8">--}}
+{{--<meta http-equiv="X-UA-Compatible" content="IE=edge">--}}
+{{--<meta name="viewport" content="width=device-width, initial-scale=1">--}}
+{{--<link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">--}}
+{{--<title>Registration Form</title>--}}
+{{--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">--}}
+{{--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">--}}
+{{--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>--}}
+{{--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>--}}
+    @extends('layout.app')
+    @section('style')
 <style type="text/css">
 	body{
 		color: #fff;
@@ -24,11 +26,11 @@
 	.form-control:focus{
 		border-color: #5cb85c;
 	}
-    .form-control, .btn{        
+    .form-control, .btn{
         border-radius: 3px;
     }
 	.signup-form{
-		width: 400px;
+		width: 600px;
 		margin: 0 auto;
 		padding: 30px 0;
 	}
@@ -46,7 +48,7 @@
 		position: absolute;
 		top: 50%;
 		z-index: 2;
-	}	
+	}
 	.signup-form h2:before{
 		left: 0;
 	}
@@ -72,9 +74,9 @@
 	.signup-form input[type="checkbox"]{
 		margin-top: 3px;
 	}
-	.signup-form .btn{        
+	.signup-form .btn{
         font-size: 16px;
-        font-weight: bold;		
+        font-weight: bold;
 		min-width: 140px;
         outline: none !important;
     }
@@ -83,7 +85,7 @@
 	}
 	.signup-form .row div:last-child{
 		padding-left: 10px;
-	}    	
+	}
     .signup-form a{
 		color: #fff;
 		text-decoration: underline;
@@ -94,27 +96,24 @@
 	.signup-form form a{
 		color: #5cb85c;
 		text-decoration: none;
-	}	
+	}
 	.signup-form form a:hover{
 		text-decoration: underline;
-	}  
+	}
 </style>
-</head>
-<body>
-<div class="signup-form">
+@endsection
+@section('content')
+    <div class="signup-form">
     <form action="ownerRegistrate" method="post">
     @csrf
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <img src="{{asset('images/workspace.png')}}" id="icon" alt="Workspace logo" style="width:190px ; lenght:150px; margin-bottom:15px; display: block;
-  margin-right: auto;
-  margin-left: auto;"/>
-
+        <img src="{{asset('images/workspace_blue.png')}}" id="icon" alt="Workspace logo" style="width:220px ; lenght:180px; margin-left:160px;"/>
 		<p class="hint-text">Registrate Your Workplace . It's only takes a minute.</p>
         <div class="form-group">
 			<div class="row">
                 <label>Name</label>
-				<div class="col-xs-12"><input type="text" class="form-control" name="name" placeholder="John Doe" required="required"></div>
-			</div>        	
+				<input type="text" class="form-control" name="name" placeholder="John Doe" required="required">
+			</div>
         </div>
         <div class="form-group">
         <label>E-mail</label>
@@ -125,18 +124,18 @@
         	<input type="phone" class="form-control" name="user_phone" placeholder="+0123456789" pattern= "[0-9]{11}" required="required">
         </div>
         <div class="form-group">
-        <label>Commercial Register</label>
+        <label>Commercial Register</label> <br>
         <input type="file" name="photo" id="photo" required>
+            <br>
         <small><strong>Hint: </strong>Capture your place Commercial Register , to be trusted from website .</small>
         </div>
         <div class="form-group">
 			<label class="checkbox-inline"><input type="checkbox" required="required"> I accept the <a href="#">Terms of Use</a> &amp; <a href="#">Privacy Policy</a></label>
 		</div>
 		<div class="form-group">
-            <button type="submit" class="btn btn-success btn-lg btn-block">Register Now</button>
+            <button type="submit" class="btn btn-success btn-md btn-block">Register Now</button>
         </div>
     </form>
 	<div class="text-center">Already have an account? <a href="{{ url('signIn') }}">Sign in</a></div>
 </div>
-</body>
-</html>                            
+@endsection
