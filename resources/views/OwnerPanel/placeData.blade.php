@@ -20,6 +20,11 @@
                                    :label="region.region_name"></el-option>
                     </el-select>
                 </el-form-item>
+                <el-form-item label="WS Name" prop="name">
+                    <el-col :span="10">
+                        <el-input v-model="ruleForm.name"></el-input>
+                    </el-col>
+                </el-form-item>
                 <el-form-item label="Address" prop="address">
                     <el-col :span="10">
                     <el-input v-model="ruleForm.address"></el-input>

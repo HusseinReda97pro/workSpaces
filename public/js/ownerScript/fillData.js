@@ -11,6 +11,7 @@ new Vue({
             region:[],
             ruleForm: {
                 address: '',
+                name:'',
                 city: '',
                 region: '',
                 phone:'',
@@ -21,8 +22,12 @@ new Vue({
                 owner_id:''
             },
             rules: {
-                address: [
+                name: [
                     { required: true, message: 'Please input Activity name', trigger: 'blur' },
+                    { min:3, max: 25, message: 'Length should be 3 to 25', trigger: 'blur' }
+                ],
+                address: [
+                    { required: true, message: 'Please input address details', trigger: 'blur' },
                     { min: 20, max: 255, message: 'Length should be 20 to 255', trigger: 'blur' }
                 ],
                 city: [
@@ -76,7 +81,7 @@ new Vue({
         },
         submitForm(formName,id) {
             var self = this ;
-            self.ruleForm.owner_id = id ; 
+            self.ruleForm.owner_id = id ;
             this.$refs[formName].validate((valid) => {
                 if (valid) {
                     axios.post('/placeData',self.ruleForm)
