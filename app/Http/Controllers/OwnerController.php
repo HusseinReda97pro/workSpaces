@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use DB ;
+use App\work_space ;
+use Illuminate\Support\Facades\Storage;
+use Validator;
+use Auth;
 class OwnerController extends Controller
 {
     /**
@@ -66,6 +70,17 @@ class OwnerController extends Controller
      */
     public function storePlace(Request $request)
     {
+        $user = new User([
+            'user_name' => $request->get('name'),
+            'email' => $request->get('email'),
+            'user_phone'=> $request->get('user_phone'),
+            'details'=> $request->get('details'),
+            'password'=>mt_rand(1000, 9999),
+            'commercial_register'=> str_replace("public", "storage", $path),
+            'user_role'=> 1 ,
+          ]);
+          $user->save();
+          return view('registrated', ['user_name' =>$user->user_name]);
     }
 
     /**
