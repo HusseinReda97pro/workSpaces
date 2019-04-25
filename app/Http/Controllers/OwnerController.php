@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DB ;
 use App\work_space ;
+use App\phone_number ;
 use Illuminate\Support\Facades\Storage;
 use Validator;
 use Auth;
@@ -70,17 +71,20 @@ class OwnerController extends Controller
      */
     public function storePlace(Request $request)
     {
-        $user = new User([
-            'user_name' => $request->get('name'),
-            'email' => $request->get('email'),
-            'user_phone'=> $request->get('user_phone'),
-            'details'=> $request->get('details'),
-            'password'=>mt_rand(1000, 9999),
-            'commercial_register'=> str_replace("public", "storage", $path),
+        $work_space = new work_space([
+            'user_id' => $request->get('owner_id'),
+            'ws_name' => $request->get('name'),
+            'ws_address'=> $request->get('address'),
+            'ws_phone_id'=> $request->get('phone'),
+            'ws_city_id'=>$request->get('city'),
+            'region_id' => $request->get('region'),
+            'website' => $request->get('websiteURL'),
+             'description' => $request->get('desc'),
             'user_role'=> 1 ,
           ]);
-          $user->save();
-          return view('registrated', ['user_name' =>$user->user_name]);
+          $work_space->save();
+          return redirect('placeData')->with('success','Your Data has been added');
+        
     }
 
     /**
