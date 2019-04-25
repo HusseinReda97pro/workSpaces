@@ -104,7 +104,7 @@
 @endsection
 @section('content')
     <div class="signup-form">
-    <form action="ownerRegistrate" method="post">
+    <form action="requestregistration" method="post" enctype="multipart/form-data">
     @csrf
     <meta name="csrf-token" content="{{ csrf_token() }}">
         <img src="{{asset('images/workspace_blue.png')}}" id="icon" alt="Workspace logo" style="width:220px ; lenght:180px; margin-left:160px;"/>
@@ -124,10 +124,10 @@
         	<input type="phone" class="form-control" name="user_phone" placeholder="+0123456789" pattern= "[0-9]{11}" required="required">
         </div>
         <div class="form-group">
-        <label>Commercial Register</label> <br>
-        <input type="file" name="photo" id="photo" required>
-            <br>
-        <small><strong>Hint: </strong>Capture your place Commercial Register , to be trusted from website .</small>
+			<label>Commercial Register</label> <br>
+			<input type="file" name="photo" id="photo" required>
+				<br>
+			<small><strong>Hint: </strong>Capture your place Commercial Register , to be trusted from website .</small>
         </div>
         <div class="form-group">
 			<label class="checkbox-inline"><input type="checkbox" required="required"> I accept the <a href="#">Terms of Use</a> &amp; <a href="#">Privacy Policy</a></label>
