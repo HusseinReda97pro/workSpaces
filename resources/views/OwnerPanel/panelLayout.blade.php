@@ -73,9 +73,7 @@
                 <a href="{{url('/editData')}}"><i class="fas fa-glasses"></i>Show & Edit </a>
                 <a href="{{url('/showPayment')}}"><i class="fab fa-cc-mastercard"></i>Show Payments</a>
                 <img src="{{asset('images/workspace.png')}}" id="icon" alt="Workspace logo" style="width:180px ; lenght:140px; padding-left: 30px; "/>
-                @section('picture')
-                    <img src="{{$userInfo}} "alt="profilePic"  style="width:180px ; lenght:140px; padding-left: 30px;"/>
-                @endsection
+               
             </div>
         </div>
         <div class="col col-md-10">

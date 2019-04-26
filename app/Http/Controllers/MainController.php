@@ -40,7 +40,8 @@ class MainController extends Controller
                 return redirect()->to('/showRequests');
             }elseif($login[0]->user_role == 1){
                 $userInfo = $login[0]->commercial_register;
-                return redirect()->to('/ownerPanel/'.$login[0]->id)->with('picture',$userInfo);
+
+                return redirect()->to('/ownerPanel/'.$login[0]->id )->with('usser', $userInfo );
             }
             else{
                 return view('errorLogin');
