@@ -41,7 +41,6 @@ Route::get('/addPayment', function () {
 });
 
 
-
 //Auth::routes();
 
 
@@ -57,6 +56,7 @@ Route::post('/addRegion','AdminController@region');
 Route::post('/deleteCity/{id}', 'AdminController@deleteCity');
 Route::post('/deleteRegion/{region_name}', 'AdminController@deleteRegion');
 
+Route::post('/requestregistration', 'MainController@registrateOwner');
 
 
 // // Owner Controller

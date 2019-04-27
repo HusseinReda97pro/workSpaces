@@ -1,3 +1,4 @@
+
 @extends('layout.app')
 @section('style')
     <style>
@@ -72,6 +73,7 @@
                 <a href="{{url('/editData')}}"><i class="fas fa-glasses"></i>Show & Edit </a>
                 <a href="{{url('/showPayment')}}"><i class="fab fa-cc-mastercard"></i>Show Payments</a>
                 <img src="{{asset('images/workspace.png')}}" id="icon" alt="Workspace logo" style="width:180px ; lenght:140px; padding-left: 30px; "/>
+               
             </div>
         </div>
         <div class="col col-md-10">
@@ -83,13 +85,7 @@
     {{--<el-col :span="20"><div class="grid-content bg-purple-light">--}}
     {{----}}
     {{--</div>--}}
-
     {{--</el-col>--}}
-
-
-
-
-
 @endsection
 @section('scripts')
     {{--<script src="{{asset('js/panelLayout.js')}}"></script>--}}
