@@ -71,38 +71,39 @@ class OwnerController extends Controller
      */
     public function storePlace(Request $request)
     {
-        /*
-        $work_space = new work_space([
-            'user_id' => $request->get('owner_id'),
-            'ws_name' => $request->get('name'),
-            'ws_address'=> $request->get('address'),
-            
-            'ws_city_id'=>$request->get('city'),
-            'region_id' => $request->get('region'),
-            'website' => $request->get('websiteURL'),
-             'description' => $request->get('desc'),
-            'user_role'=> 1 ,
-          ]);
-          $work_space->save();
-           */ 
 
-          DB::table('work_space')->insert([
-            'ws_name' =>$request->name, 
+           $space_id = DB::table('work_spaces')->insertGetId([
+            'ws_name' =>$request->name,
             'user_id' => $request->owner_id,
             'ws_address' => $request->address,
-           
             'ws_city_id' => $request->city,
             'region_id' => $request->region,
             'website' => $request->websiteURL,
-            'description' => $request->desc,
-            'user_role'=> 1 ,
+            'description' => $request->desc
           ]);
-         
-          return $true;
-          
+           DB::table('phone_numbers')->insert([
 
-        
+               'phone_number' => $request->phone,
+               'work_space_id' => $space_id,
+           ]);
+        DB::table('phone_numbers')->insert([
+
+            'phone_number' => $request->phone2,
+            'work_space_id' => $space_id,
+        ]);
+        $image = $request->image;
+        $image = str_replace('data:image/jpeg;base64,', '', $image);
+        $image = str_replace(' ', '+', $image);
+        $imageName = 'WSimage/'.'ws-'.time().'.'.'jpeg';
+        \File::put(public_path().'/'.$imageName, base64_decode($image));
+        DB::table('images')->insert([
+            'img_url' => $imageName,
+            'work_space_id' => $space_id,
+        ]);
+        return 1 ;
+
     }
+
 
     /**
      * Update the specified resource in storage.

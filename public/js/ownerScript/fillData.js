@@ -17,7 +17,7 @@ new Vue({
                 phone:'',
                 phone2:'',
                 websiteURL:'',
-                fileList: [],
+                image:'',
                 desc: '',
                 owner_id:''
             },
@@ -37,16 +37,15 @@ new Vue({
                     { required: true, message: 'Please select Activity zone', trigger: 'change' }
                 ],
                 phone: [
-                    { type: 'date', required: true, message: 'Please pick a date', trigger: 'change' }
+                    { required: true, message: 'Please write your phone', trigger: 'change' },
+                    { min: 10, max: 15, message: 'Please write a correct phone', trigger: 'blur' }
                 ],
-                phone2: [
-                    { type: 'date', required: true, message: 'Please pick a time', trigger: 'change' }
-                ],
+
                 websiteURL: [
-                    { type: 'text', required: true, message: 'Please select at least one activity type', trigger: 'change' }
+                    {required: true, message: 'Please write your website URL or FacebookPage', trigger: 'change' }
                 ],
-                fileList: [
-                    { type:'array', required: true, message: 'Please select activity resource', trigger: 'change' }
+                image: [
+                    {  required: true, message: 'Please select image', trigger: 'change' }
                 ],
                 desc: [
                     { required: true, message: 'Please input Activity name', trigger: 'blur' },
@@ -68,6 +67,17 @@ new Vue({
         //         throw new Error("Something went badly wrong!");
         //     }
         // },
+        readFile() {
+            var self = this
+            console.log($('#img'))
+            if ($('#img')[0].files && $('#img')[0].files[0]) {
+                var FR = new FileReader();
+                FR.addEventListener("load", (e) => {
+                    self.ruleForm.image = e.target.result;
+                });
+                FR.readAsDataURL($('#img')[0].files[0]);
+            }
+        },
         getCities(){
           var self = this ;
             axios.get('/requestCity')
@@ -82,16 +92,18 @@ new Vue({
         submitForm(formName,id) {
             var self = this ;
             self.ruleForm.owner_id = id ;
+            console.log(self.ruleForm);
             this.$refs[formName].validate((valid) => {
                 if (valid) {
                     axios.post('/placeData',self.ruleForm)
                         .then(function (response) {
                             console.log(response.data);
+                            alert('submit!');
                         })
                         .catch(function (error) {
                             console.log(error);
                         });
-                    alert('submit!');
+
                     self.resetForm(formName);
                 } else {
                     console.log('error submit!!');

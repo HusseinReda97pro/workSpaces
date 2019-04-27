@@ -39,6 +39,11 @@ Route::get('/citiesRegions', function () {
 Route::get('/addPayment', function () {
     return view('AdminPanel.addPayment');
 });
+// Owner Panel
+
+Route::get('/showPayment', function () {
+    return view('OwnerPanel.showPayment');
+});
 
 
 //Auth::routes();

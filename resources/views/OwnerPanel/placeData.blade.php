@@ -32,7 +32,7 @@
                 </el-form-item>
                 <el-form-item label="Phone" prop="phone">
                     <el-col :span="6">
-                    <el-input v-model="ruleForm.phone"></el-input>
+                        <el-input v-model="ruleForm.phone"></el-input>
                     </el-col>
                 </el-form-item>
                 <el-form-item label="Phone" prop="phone2">
@@ -47,17 +47,19 @@
                 </el-form-item>
                 <el-form-item label="Place images">
                     <el-col :span="6">
-                    <el-upload
-                        class="upload-demo"
-                        action="https://jsonplaceholder.typicode.com/posts/"
-                        :on-preview="handlePreview"
-                        :on-remove="handleRemove"
-                        :before-remove="beforeRemove"
-                        multiple
-                        :limit="3"
-                        :on-exceed="handleExceed"
-                        :file-list="ruleForm.fileList">
-                        <el-button size="small" type="success">Click to upload</el-button>
+                        <input @change="readFile()"  type="file" name="img_src" id="img">
+                        <small>jpg/jpeg files with a size less than 500kb</small>
+                    {{--<el-upload--}}
+                        {{--class="upload-demo"--}}
+                        {{--action="https://jsonplaceholder.typicode.com/posts/"--}}
+                        {{--:on-preview="handlePreview"--}}
+                        {{--:on-remove="handleRemove"--}}
+                        {{--:before-remove="beforeRemove"--}}
+                        {{--multiple--}}
+                        {{--:limit="3"--}}
+                        {{--:on-exceed="handleExceed"--}}
+                        {{--:file-list="ruleForm.fileList">--}}
+                        {{--<el-button @change="readFile()" size="small" type="file" name="img_src" id="img">Click to upload</el-button>--}}
                         <div slot="tip" class="el-upload__tip">jpg/png files with a size less than 500kb</div>
                     </el-upload>
                     </el-col>
