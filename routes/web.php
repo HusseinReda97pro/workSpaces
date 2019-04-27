@@ -63,6 +63,7 @@ Route::post('/deleteRegion/{region_name}', 'AdminController@deleteRegion');
 
 Route::post('/requestregistration', 'MainController@registrateOwner');
 
+Route ::post('addPaymenttoDb','AdminController@addPayment');
 
 // // Owner Controller
 Route ::get('/ownerPanel/{id}','OwnerController@index');
