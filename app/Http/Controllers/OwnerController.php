@@ -71,12 +71,12 @@ class OwnerController extends Controller
      */
     public function storePlace(Request $request)
     {
-        /**
+        /*
         $work_space = new work_space([
             'user_id' => $request->get('owner_id'),
             'ws_name' => $request->get('name'),
             'ws_address'=> $request->get('address'),
-            'ws_phone_id'=> $request->get('phone'),
+            
             'ws_city_id'=>$request->get('city'),
             'region_id' => $request->get('region'),
             'website' => $request->get('websiteURL'),
@@ -84,20 +84,22 @@ class OwnerController extends Controller
             'user_role'=> 1 ,
           ]);
           $work_space->save();
-           */
+           */ 
 
           DB::table('work_space')->insert([
             'ws_name' =>$request->name, 
             'user_id' => $request->owner_id,
             'ws_address' => $request->address,
-            'ws_phone_id' => $request->phone,
+           
             'ws_city_id' => $request->city,
             'region_id' => $request->region,
             'website' => $request->websiteURL,
             'description' => $request->desc,
             'user_role'=> 1 ,
           ]);
-          $work_space->save();
+         
+          return $true;
+          
 
         
     }
