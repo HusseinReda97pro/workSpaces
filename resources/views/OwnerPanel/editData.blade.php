@@ -71,7 +71,7 @@
                 </el-form-item>
                 <el-form-item>
                     <el-button type="warning" @click="submitForm('ruleForm')">Update</el-button>
-                    <el-button @click="resetForm('ruleForm')">Reset</el-button>
+                    <el-button type="danger" @click="resetForm('ruleForm')">Delete Workspace</el-button>
                 </el-form-item>
             </el-form>
         </div>

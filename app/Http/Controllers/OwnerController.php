@@ -176,9 +176,10 @@ class OwnerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function deleteWS($id)
     {
-        //
+        DB::table('work_spaces')->where('ws_id', '=', $id)->delete();
+        return 1 ;
     }
 
     public  function showPayment(){

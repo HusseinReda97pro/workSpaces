@@ -72,6 +72,7 @@ Route ::get('/ownerPanel','OwnerController@index');
 Route ::get('/getWS/{id}','OwnerController@getWorkspaceData');
 Route ::get('/getPlaceData/{id}','OwnerController@getPlaceData');
 Route ::post('/updatePlaceData','OwnerController@updatePlaceData');
+Route ::post('/deleteWS/{id}','OwnerController@deleteWS');
 
 Route ::get('/requestCity','OwnerController@getCities');
 Route ::get('/requestRegion/{city_id}','OwnerController@requestRegion');

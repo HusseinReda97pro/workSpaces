@@ -126,11 +126,18 @@ new Vue({
                     console.log(error);
                 });
         },
-        open3() {
+        update() {
             this.$notify({
                 title: 'Success',
                 message: 'your data has been updated',
                 type: 'success'
+            });
+        },
+        delete() {
+            this.$notify({
+                title: 'Success',
+                message: 'your data has been deleted',
+                type: 'danger'
             });
         },
         submitForm(formName) {
@@ -141,7 +148,7 @@ new Vue({
                     axios.post('/updatePlaceData',self.ruleForm)
                         .then(function (response) {
                             console.log(response.data);
-                            self.open3();
+                            self.update();
                         })
                         .catch(function (error) {
                             console.log(error);
@@ -155,7 +162,17 @@ new Vue({
             });
         },
         resetForm(formName) {
+            var self = this ;
+            axios.post('/deleteWS/'+self.ruleForm.ws_id)
+                .then(function (response) {
+                    console.log(response.data);
+                    self.update();
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
             this.$refs[formName].resetFields();
+
         },
         //    file Upload
         handleRemove(file, fileList) {
