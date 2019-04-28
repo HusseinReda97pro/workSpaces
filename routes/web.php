@@ -44,9 +44,7 @@ Route::get('/editData', function () {
     return view('OwnerPanel.editData');
 });
 
-Route::get('/showPayment', function () {
-    return view('OwnerPanel.showPayment');
-});
+Route::get('/showPayment', 'OwnerController@showPayment');
 
 
 //Auth::routes();
