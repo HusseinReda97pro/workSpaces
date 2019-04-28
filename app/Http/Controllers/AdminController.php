@@ -159,4 +159,16 @@ class AdminController extends Controller
     public function sendRejectedMail(){
         Mail::to('pro.hussein.reda@gmail.com')->send(new sendMail(0));
     }
+    public function addPayment(Request $request){
+        DB::table('Payments')->insert(
+            [   'Bank_Name' => $request->Bank_Name ,
+                'Bank_Account' => $request->Bank_Account,
+                'Bank_Number'=>$request->Bank_Number,
+                'Swift_Code' => $request->Swift_Code
+
+            ]
+        );
+        return redirect("/addPayment") ;
+
+    }
 }

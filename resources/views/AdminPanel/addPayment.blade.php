@@ -7,25 +7,25 @@
             <div class="row">
                 {{--<div class="col col-md-2"></div>--}}
 
-                <form method="post" action="#" enctype="multipart/form-data" style="padding:10px 0px 20px 0px ">
+                <form method="post" action="/addPaymenttoDb" enctype="multipart/form-data" style="padding:10px 0px 20px 0px ">
                     {{csrf_field()}}
 
                     <div class="form-group">
                         <label for="exampleInputEmail1">Bank Name</label>
-                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="ex. Al-Ahly , CIB etc.." name="name" required>
+                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="ex. Al-Ahly , CIB etc.." name="Bank_Name" required>
 
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword1">Bank Account</label>
-                        <input type="text" class="form-control" id="exampleInputPassword1" placeholder="ex. John Doe" name="account" required>
+                        <input type="text" class="form-control" id="exampleInputPassword1" placeholder="ex. John Doe" name="Bank_Account" required>
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword1">Bank Number</label>
-                        <input type="text" class="form-control" id="exampleInputPassword1" placeholder="ex. 2300 0012 1123" name="caccount" required>
+                        <input type="text" class="form-control" id="exampleInputPassword1" placeholder="ex. 2300 0012 1123" name="Bank_Number" required>
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword1"> Swift Code</label>
-                        <input type="text" class="form-control" id="exampleInputPassword1" placeholder="ex. 01212" name="swift" required>
+                        <input type="text" class="form-control" id="exampleInputPassword1" placeholder="ex. 01212" name="Swift_Code" required>
                     </div>
                     {{--<div class="input-group">--}}
                         {{--<div class="custom-file">--}}
