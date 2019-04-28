@@ -4,12 +4,15 @@
 
 
 new Vue({
-    el: '#ownerFillData',
+    el: '#editData',
     data:
         {
+            user_id : document.getElementById('idele').value ,
+            work_spaces : [] ,
             city:[],
             region:[],
             ruleForm: {
+                ws_id:'',
                 address: '',
                 name:'',
                 city: '',
@@ -58,11 +61,12 @@ new Vue({
     mounted: function () {
         var self = this;
         self.auth();
+        self.getWS();
         self.getCities();
 
     },
     methods : {
-        auth : function(){
+        auth() {
             var check = document.getElementById('idele').value;
             if(!check){
                 throw new Error("Something went badly wrong!");
@@ -80,7 +84,7 @@ new Vue({
             }
         },
         getCities(){
-          var self = this ;
+            var self = this ;
             axios.get('/requestCity')
                 .then(function (response) {
                     console.log(response.data);
@@ -90,22 +94,60 @@ new Vue({
                     console.log(error);
                 });
         },
-        submitForm(formName,id) {
+        getWS(){
             var self = this ;
-            self.ruleForm.owner_id = id ;
+            axios.get('/getWS/'+self.user_id)
+                .then(function (response) {
+                    console.log(response.data);
+                    self.work_spaces = response.data;
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+        },
+        getData(){
+            var self = this ;
+
+            axios.get('/getPlaceData/'+self.ruleForm.ws_id)
+                .then(function (response) {
+                    console.log(response.data);
+                    self.ruleForm.name = response.data[0].ws_name;
+                    self.ruleForm.address = response.data[0].ws_address;
+                    // self.ruleForm.city = response.data[0].ws_city_id;
+                    // self.ruleForm.region = response.data[0].region_id;
+                    self.ruleForm.desc = response.data[0].description;
+                    self.ruleForm.phone = response.data[0].phone_number;
+                    self.ruleForm.phone2 = response.data[0].phone_number;
+                    self.ruleForm.websiteURL = response.data[0].website;
+                    self.ruleForm.image = response.data[0].img_url;
+                    self.ruleForm.owner_id =self.user_id;
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+        },
+        open3() {
+            this.$notify({
+                title: 'Success',
+                message: 'your data has been updated',
+                type: 'success'
+            });
+        },
+        submitForm(formName) {
+            var self = this ;
             console.log(self.ruleForm);
             this.$refs[formName].validate((valid) => {
                 if (valid) {
-                    axios.post('/placeData',self.ruleForm)
+                    axios.post('/updatePlaceData',self.ruleForm)
                         .then(function (response) {
                             console.log(response.data);
-                            alert('submit!');
+                            self.open3();
                         })
                         .catch(function (error) {
                             console.log(error);
                         });
 
-                    self.resetForm(formName);
+                    // self.resetForm(formName);
                 } else {
                     console.log('error submit!!');
                     return false;
@@ -115,7 +157,7 @@ new Vue({
         resetForm(formName) {
             this.$refs[formName].resetFields();
         },
-    //    file Upload
+        //    file Upload
         handleRemove(file, fileList) {
             console.log(file, fileList);
         },

@@ -10,8 +10,12 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\URL;
 use Validator;
 use Auth;
+use Illuminate\Routing\Redirector;
+use Session;
+
 class MainController extends Controller
 {
+    private $user_id ;
     //
     function index()
     {
@@ -20,28 +24,37 @@ class MainController extends Controller
     function checklogin(Request $request)
     {
 
+
         $this->validate($request, [
         'email'   => 'required|email',
         'password'  => 'required|alphaNum'
         ]);
 
+
         $login = DB::table("users")
                     ->where('email',$request->email)
                     ->where('password',$request->password)
                     ->get() ;
-
-       if($login->isEmpty())
+        $user_role = $login[0]->user_role ;
+        if($login->isEmpty())
         {
             return back()->with('error', 'Wrong Login Details');
         }
         else
         {
             if($login[0]->user_role== 0) {
+                session()->regenerate();
+                Session::put('role', $user_role);
                 return redirect()->to('/showRequests');
             }elseif($login[0]->user_role == 1){
-                $userInfo = $login[0]->commercial_register;
+                session()->regenerate();
+                Session::put([
+                    'role' => $user_role,
+                    'id' => $login[0]->id
+                ]);
 
-                return redirect()->to('/ownerPanel/'.$login[0]->id )->with('usser', $userInfo );
+//                Session::put('role', $user_role);
+                return redirect()->to('/ownerPanel');
             }
             else{
                 return view('errorLogin');
@@ -50,19 +63,21 @@ class MainController extends Controller
             return view('welcome');
         }
     }
-
-
+public  function logout(){
+    Session::forget('role');
+    return redirect()->to('/signIn');
+}
     function successlogin()
     {
 
      return view('successlogin');
     }
 
-    function logout()
-    {
-     Auth::logout();
-     return redirect()->to('/main');
-    }
+//    function logout()
+//    {
+//     Auth::logout();
+//     return redirect()->to('/main');
+//    }
 
     public function registrateOwner(Request $request)
     {

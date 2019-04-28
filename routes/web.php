@@ -40,6 +40,9 @@ Route::get('/addPayment', function () {
     return view('AdminPanel.addPayment');
 });
 // Owner Panel
+Route::get('/editData', function () {
+    return view('OwnerPanel.editData');
+});
 
 Route::get('/showPayment', function () {
     return view('OwnerPanel.showPayment');
@@ -48,6 +51,7 @@ Route::get('/showPayment', function () {
 
 //Auth::routes();
 
+Route::get('/logout', 'MainController@logout');
 
 // // Admin Controller
 Route::get('/RequestsData', 'AdminController@index');
@@ -66,7 +70,11 @@ Route::post('/requestregistration', 'MainController@registrateOwner');
 Route ::post('addPaymenttoDb','AdminController@addPayment');
 
 // // Owner Controller
-Route ::get('/ownerPanel/{id}','OwnerController@index');
+Route ::get('/ownerPanel','OwnerController@index');
+Route ::get('/getWS/{id}','OwnerController@getWorkspaceData');
+Route ::get('/getPlaceData/{id}','OwnerController@getPlaceData');
+Route ::post('/updatePlaceData','OwnerController@updatePlaceData');
+
 Route ::get('/requestCity','OwnerController@getCities');
 Route ::get('/requestRegion/{city_id}','OwnerController@requestRegion');
 Route ::post('/placeData','OwnerController@storePlace');

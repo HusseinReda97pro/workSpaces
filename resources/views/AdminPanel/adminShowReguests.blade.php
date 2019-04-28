@@ -1,9 +1,14 @@
 {{--@extends('layout.app')--}}
+
 @extends('AdminPanel.panelLayout')
 
+
 @section('adminPanelContent')
+
+
     <div id="adminShowRequests">
 {{--Table--}}
+        <input type="hidden" id="idele" value="{{ Session::get('role') }}" >
         <template>
             <el-table :data="tableData" style="width: 100%">
                 <el-table-column label="Date" width="180">

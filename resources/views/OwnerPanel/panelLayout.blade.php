@@ -1,3 +1,11 @@
+<?php
+session()->regenerate();
+if(Session('role')==0){
+
+    echo "ليس لديك الصلاحيات للدخول على تلك الصفحة";
+    exit();
+}else{
+}   ?>
 
 @extends('layout.app')
 @section('style')
@@ -69,11 +77,11 @@
     <div class="row">
         <div class="col col-md-2">
             <div class="sidenav">
-                <a href={{url('/fillData')}}><i class="fas fa-glasses"></i>WorkSpace Data</a>
+                <a href={{url('/ownerPanel')}}><i class="fas fa-glasses"></i>WorkSpace Data</a>
                 <a href="{{url('/editData')}}"><i class="fas fa-glasses"></i>Show & Edit </a>
                 <a href="{{url('/showPayment')}}"><i class="fab fa-cc-mastercard"></i>Show Payments</a>
                 <img src="{{asset('images/workspace.png')}}" id="icon" alt="Workspace logo" style="width:180px ; lenght:140px; padding-left: 30px; "/>
-               
+
             </div>
         </div>
         <div class="col col-md-10">

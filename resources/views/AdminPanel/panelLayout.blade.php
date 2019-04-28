@@ -1,4 +1,12 @@
 @extends('layout.app')
+<?php
+session()->regenerate();
+if(Session('role')==1){
+
+    echo "ليس لديك الصلاحيات للدخول على تلك الصفحة";
+    exit();
+}else{
+}   ?>
 @section('style')
     <style>
         .el-menu-vertical-demo:not(.el-menu--collapse) {

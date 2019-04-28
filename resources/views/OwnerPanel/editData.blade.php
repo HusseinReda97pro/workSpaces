@@ -1,12 +1,22 @@
 @extends('OwnerPanel.panelLayout')
 
 @section('ownerPanelContent')
-    <div id="ownerFillData">
+    <div id="editData">
         <div class="container">
             <input type="hidden" id="idele" value="{{ Session::get('id') }}" >
 
-            <h2 class="text-center" style="padding-top: 30px;">Fill your WorkSpace Data</h2>
+            <h2 class="text-center" style="padding-top: 30px;"><span style="color: #1d68a7">Update</span> your WorkSpace Data</h2>
             <p class="text-center lead"><small>Here's you can show what you want the customer to see.</small></p>
+            <div class="demo-input-suffix">
+            <span class="demo-input-label">Choose a Specific Work Space</span>
+                <el-select  v-model="ruleForm.ws_id" placeholder="your WorkSpace"  v-on:change="getData">
+                    <el-option v-for="ws in work_spaces"
+                               :key="ws.ws_id"
+                               :value="ws.ws_id"
+                               :label="ws.ws_name"></el-option>
+                </el-select>
+            </div>
+            <br>
             <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="120px" class="demo-ruleForm">
                 <el-form-item label="Activity zone" prop="city">
                     <el-select v-model="ruleForm.city" placeholder="City"  v-on:change="onChange">
@@ -29,7 +39,7 @@
                 </el-form-item>
                 <el-form-item label="Address" prop="address">
                     <el-col :span="10">
-                    <el-input v-model="ruleForm.address"></el-input>
+                        <el-input v-model="ruleForm.address"></el-input>
                     </el-col>
                 </el-form-item>
                 <el-form-item label="Phone" prop="phone">
@@ -53,21 +63,20 @@
                         <small>jpg/jpeg files with a size less than 500kb</small>
 
                         <div slot="tip" class="el-upload__tip">jpg/png files with a size less than 500kb</div>
-                    </el-upload>
+                        </el-upload>
                     </el-col>
                 </el-form-item>
                 <el-form-item label="Description" prop="desc">
                     <el-input type="textarea" v-model="ruleForm.desc"></el-input>
                 </el-form-item>
                 <el-form-item>
-                    <el-button type="primary" @click="submitForm('ruleForm',{{ Session::get('id') }})">Create</el-button>
+                    <el-button type="warning" @click="submitForm('ruleForm')">Update</el-button>
                     <el-button @click="resetForm('ruleForm')">Reset</el-button>
                 </el-form-item>
             </el-form>
         </div>
-
     </div>
 @endsection
 @section('ownerPanelScript')
-    <script src="{{asset('js/ownerScript/fillData.js')}}"></script>
+    <script src="{{asset('js/ownerScript/editData.js')}}"></script>
 @endsection

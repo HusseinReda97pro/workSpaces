@@ -9,6 +9,8 @@ use App\phone_number ;
 use Illuminate\Support\Facades\Storage;
 use Validator;
 use Auth;
+use Session;
+
 class OwnerController extends Controller
 {
     /**
@@ -16,12 +18,12 @@ class OwnerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($id)
+    public function index()
     {
 //        $owner = DB::table('users')
 //                ->where('id',$id)
 //                ->select('name')->get();
-        return view('OwnerPanel.placeData',['id'=>$id]) ;
+        return view('OwnerPanel.placeData',['id'=>Session::get('id')]) ;
     }
 
     /**
@@ -112,9 +114,60 @@ class OwnerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+//    Function to get all WSs which followed a certain owner
+    public function getWorkspaceData(Request $request , $id)
     {
-        //
+//        return $request->user_id ;
+        $ws_data = DB::table('work_spaces')->where('user_id',$id)->select('ws_id','ws_name','user_id')->get();
+        return $ws_data ;
+    }
+//    function to get a certain ws data
+    public function getPlaceData(Request $request , $id){
+        $workspace = DB::table('work_spaces')
+            ->where('work_spaces.ws_id',$id)
+            ->join('phone_numbers','phone_numbers.work_space_id','=','work_spaces.ws_id')
+            ->join('images','images.work_space_id','=','work_spaces.ws_id')
+            ->select('phone_numbers.phone_number','images.img_url','work_spaces.ws_id','work_spaces.ws_name','work_spaces.ws_address'
+            ,'work_spaces.website','work_spaces.description')
+            ->get();
+        return $workspace ;
+    }
+
+    public function updatePlaceData(Request $request) {
+        DB::table('work_spaces')
+            ->where('ws_id', $request->ws_id)
+            ->update([
+                'ws_name' => $request->name,
+                'ws_address' => $request->address,
+                'ws_city_id' => $request->city,
+                'region_id' => $request->region,
+                'website' => $request->websiteURL,
+                'description' => $request->desc,
+            ]);
+        DB::table('phone_numbers')
+            ->where('work_space_id', $request->ws_id)
+            ->where('phone_number','!=',$request->phone)
+            ->update([
+                'phone_number' => $request->phone,
+            ]);
+        DB::table('phone_numbers')
+            ->where('work_space_id', $request->ws_id)
+            ->where('phone_number','!=',$request->phone)
+            ->update([
+                'phone_number' => $request->phone2,
+            ]);
+        $image = $request->image;
+        $image = str_replace('data:image/jpeg;base64,', '', $image);
+        $image = str_replace(' ', '+', $image);
+        $imageName = 'WSimage/'.'ws-'.time().'.'.'jpeg';
+        \File::put(public_path().'/'.$imageName, base64_decode($image));
+        DB::table('images')
+            ->where('work_space_id', $request->ws_id)
+            ->update([
+                'img_url' => $imageName,
+            ]);
+        return 1 ;
+
     }
 
     /**

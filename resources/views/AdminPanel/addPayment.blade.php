@@ -1,6 +1,12 @@
 {{--@extends('layout.app')--}}
 @extends('AdminPanel.panelLayout')
-
+<?php
+session()->regenerate();
+if(Session('id')==1){
+    echo "ليس لديك الصلاحيات للدخول على تلك الصفحة";
+    exit();
+}else{
+}   ?>
 @section('adminPanelContent')
     <div id="addPayment">
         <div class="container text-center">
@@ -35,7 +41,7 @@
 
                         {{--<br>--}}
                     {{--</div>--}}
-                    
+
                     <div class="form-group">
                     <button style="margin-top: 30px;" type="submit" class="btn btn-primary">insert</button>
                     </div>

@@ -11,16 +11,16 @@ new Vue({
         },
     mounted: function () {
         var self = this;
-        // self.auth();
+        self.auth();
         self.getContent();
     },
     methods : {
-        // auth : function(){
-        //     // var check = document.getElementById('idele').value;
-        //     if(!check){
-        //         throw new Error("Something went badly wrong!");
-        //     }
-        // },
+        auth : function(){
+            var check = document.getElementById('idele').value;
+            if(!check){
+                throw new Error("Something went badly wrong!");
+            }
+        },
         getContent: function () {
             var self = this;
             axios.get('/RequestsData')
