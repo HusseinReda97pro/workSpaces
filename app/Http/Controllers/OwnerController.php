@@ -127,4 +127,11 @@ class OwnerController extends Controller
     {
         //
     }
+
+    public  function showPayment(){
+
+        $Payments = DB::table('payments')->get();
+        return view('OwnerPanel.showPayment',['payments'=>$Payments]) ;
+
+    }
 }

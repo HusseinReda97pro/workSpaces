@@ -41,9 +41,7 @@ Route::get('/addPayment', function () {
 });
 // Owner Panel
 
-Route::get('/showPayment', function () {
-    return view('OwnerPanel.showPayment');
-});
+Route::get('/showPayment', 'OwnerController@showPayment');
 
 
 //Auth::routes();
