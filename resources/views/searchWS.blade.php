@@ -92,17 +92,17 @@
                                 <h3>@{{ ws.ws_name }}</h3>
                                 <div class="bottom clearfix">
                                     <p>@{{ ws.description }}</p>
-                                    <el-button @click="dialogVisible = true" type="text" class="button">See Details</el-button>
+                                    <el-button @click="userMail(ws.ws_id)" type="text" class="button">See Details</el-button>
                                 </div>
                             </div>
                             <el-dialog
                                 title="Details"
                                 :visible.sync="dialogVisible"
                                 width="50%"
-                                :before-close="handleClose">
+                                >
                                 {{--<span>Write your Mail to Send the Details .</span>--}}
-                                <el-input placeholder="ex: John@Mail.com" v-model="name" class="input-with-select">
-                                    <el-button slot="append" icon="el-icon-search" @click="searchByName"></el-button>
+                                <el-input placeholder="ex: John@Mail.com" v-model="user.mail" class="input-with-select">
+                                    <el-button slot="append" icon="el-icon-circle-check" @click="sendmail">send mail</el-button>
                                 </el-input>
                                 <span slot="footer" class="dialog-footer">
                                     <el-button @click="dialogVisible = false">Cancel</el-button>

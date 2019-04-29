@@ -87,4 +87,5 @@ Route ::post('main/logout','MainController@logout');
 Route ::get('/RequestWorkspaces','WorkSpacesController@getWorkspaces');
 Route ::post('/searchWorkspaceRegion','WorkSpacesController@searchWorkspaceRegion');
 Route ::get('/searchWorkspaceName/{name}','WorkSpacesController@searchWorkspaceName');
+Route ::post('/userSeeDetails','WorkSpacesController@userSeeDetails');
 

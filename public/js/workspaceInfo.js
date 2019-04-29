@@ -11,6 +11,10 @@ new Vue({
             },
             name: '',
             dialogVisible: false ,
+            user:{
+                mail:'',
+                ws_id:''
+            }
 
         },
         mounted: function () {
@@ -73,6 +77,30 @@ new Vue({
                     self.workspaces = response.data;
                     console.log(self.workspaces);
 
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+        },
+        mailSuccess() {
+            this.$notify({
+                title: 'Success',
+                message: 'Check your Mailbox to see our Mail',
+                type: 'success'
+            });
+        },
+        userMail(ws_id){
+            var self = this ;
+            self.user.ws_id = ws_id;
+            self.dialogVisible = true ;
+        },
+        sendmail(){
+            var self = this ;
+            axios.post('/userSeeDetails',self.user)
+                .then(function (response) {
+                    console.log(response);
+                    self.mailSuccess();
+                    self.dialogVisible = false ;
                 })
                 .catch(function (error) {
                     console.log(error);
