@@ -21,6 +21,9 @@ Route::get('/signIn', function () {
 Route::get('/registration', function () {
     return view('registration');
 });
+Route::get('/searchWS', function () {
+    return view('searchWS');
+});
 Route::get('/commercialRegister/{photo}', function ($photo) {
     return view('commercialRegister', ['photo' =>$photo]);
 });
@@ -80,4 +83,8 @@ Route ::post('/placeData','OwnerController@storePlace');
 Route ::post('/main/checklogin','MainController@checklogin');
 Route ::get('main/successlogin','MainController@successlogin');
 Route ::post('main/logout','MainController@logout');
+// search workspaces
+Route ::get('/RequestWorkspaces','WorkSpacesController@getWorkspaces');
+Route ::post('/searchWorkspaceRegion','WorkSpacesController@searchWorkspaceRegion');
+Route ::get('/searchWorkspaceName/{name}','WorkSpacesController@searchWorkspaceName');
 

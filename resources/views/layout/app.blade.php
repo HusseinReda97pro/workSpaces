@@ -45,7 +45,7 @@
     </style>
 </head>
 <body>
-    <div id="app">
+    <div id="searchWS">
         <el-menu
             :default-active="activeIndex"
             class="el-menu-demo"
@@ -56,7 +56,7 @@
             active-text-color="#ffd04b">
             <el-menu-item><img  src="images/workspace.png" style="height:120% ;width: 50%;padding: -190px; " alt="">We Make Things easy , We Save Time</el-menu-item>
             <el-menu-item index="1"><a href="{{ URL('/' )}}">Home</a></el-menu-item>
-            <el-menu-item index="2">Search WorkSpace</el-menu-item>
+            <el-menu-item index="2"><a href="{{ URL('/searchWS' )}}">Search WorkSpace</a></el-menu-item>
             <el-menu-item index="3"><a href="{{ URL('/signIn' )}}">Login</a></el-menu-item>
             <el-menu-item index="4"><a href="{{ URL('/registration' )}}">Registration</a></el-menu-item>
         </el-menu>
@@ -77,7 +77,7 @@
   <!-- import JavaScript -->
   <script src="https://unpkg.com/element-ui/lib/index.js"></script>
   @yield('scripts')
-  <script src="{{asset('js/tryelement.js')}}"></script>
+  <script src="{{asset('js/searchWS.js')}}"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
 {{--<script src="{{asset('js/jquery-1.9.1.min.js')}}"></script>--}}

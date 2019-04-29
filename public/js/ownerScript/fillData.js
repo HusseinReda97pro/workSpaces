@@ -105,7 +105,7 @@ new Vue({
                             console.log(error);
                         });
 
-                    self.resetForm(formName);
+                    // self.resetForm(formName);
                 } else {
                     console.log('error submit!!');
                     return false;

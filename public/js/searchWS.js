@@ -1,9 +1,11 @@
 
 new Vue({
-    el: '#app',
+    el: '#searchWS',
     data:
         {
-        activeIndex: ''
+        activeIndex: '',
+            input3: '',
+            select: ''
 
     },
 
