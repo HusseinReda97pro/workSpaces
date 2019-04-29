@@ -55,15 +55,20 @@
             text-color="#fff"
             active-text-color="#ffd04b">
             <el-menu-item><img  src="images/workspace.png" style="height:120% ;width: 50%;padding: -190px; " alt="">We Make Things easy , We Save Time</el-menu-item>
-            <el-menu-item index="1"><a href="{{ URL('/' )}}">Home</a></el-menu-item>
-            <el-menu-item index="2"><a href="{{ URL('/searchWS' )}}">Search WorkSpace</a></el-menu-item>
-             @if(Session()==null)
+            @if(!session()->has('role'))
                 <el-menu-item index="3"><a href="{{ URL('/signIn' )}}">Login</a></el-menu-item>
+
             @endif
-            @if(Session()!=null)
-            <el-menu-item index="3"><a href="{{ URL('/logout' )}}">Logout</a></el-menu-item>
+        @if(Session('role') != '0')
+                <el-menu-item index="1"><a href="{{ URL('/' )}}">Home</a></el-menu-item>
+                <el-menu-item index="2"><a href="{{ URL('/searchWS' )}}">Search WorkSpace</a></el-menu-item>
+                <el-menu-item index="4"><a href="{{ URL('/registration' )}}">Registration</a></el-menu-item>
             @endif
-            <el-menu-item index="4"><a href="{{ URL('/registration' )}}">Registration</a></el-menu-item>
+            @if(Session('role' )== '0' ||Session('role' )== '1'  )
+                <el-menu-item  index="3"><a href="{{ URL('/logout' )}}">Logout</a></el-menu-item>
+
+            @endif
+
         </el-menu>
 
 
