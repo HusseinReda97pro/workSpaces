@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\DesignPatterns\Strategy\searchByName;
+use App\DesignPatterns\Strategy\searchByRegion;
+use App\DesignPatterns\Strategy\searchContext;
 use Illuminate\Http\Request;
 use DB ;
 class WorkSpacesController extends Controller
@@ -24,14 +27,35 @@ class WorkSpacesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function searchWorkspaceRegion(Request $request)
+
+//    public function searchWorkspaceRegion(Request $request)
+//    {
+//        $ws = DB::table('work_spaces')
+//            ->where('work_spaces.ws_city_id',$request->city_id)
+//            ->where('work_spaces.region_id',$request->region_id)
+//            ->join('images','work_spaces.ws_id','images.work_space_id')
+//            ->select('work_spaces.ws_id','work_spaces.ws_name','work_spaces.description','images.img_url')->get();
+//        return $ws ;
+//    }
+//
+//    /**
+//     * Store a newly created resource in storage.
+//     *
+//     * @param  \Illuminate\Http\Request  $request
+//     * @return \Illuminate\Http\Response
+//     */
+//    public function searchWorkspaceName($name)
+//    {
+//        $ws = DB::table('work_spaces')
+//            ->where('work_spaces.ws_name','like','%'.$name.'%')
+//            ->join('images','work_spaces.ws_id','images.work_space_id')
+//            ->select('work_spaces.ws_id','work_spaces.ws_name','work_spaces.description','images.img_url')->get();
+//        return $ws ;
+//    }
+    public function searchWorkspaceRegion($request)
     {
-        $ws = DB::table('work_spaces')
-            ->where('work_spaces.ws_city_id',$request->city_id)
-            ->where('work_spaces.region_id',$request->region_id)
-            ->join('images','work_spaces.ws_id','images.work_space_id')
-            ->select('work_spaces.ws_id','work_spaces.ws_name','work_spaces.description','images.img_url')->get();
-        return $ws ;
+        $context = new searchContext(new searchByRegion());
+        return $context->doSearch($request);
     }
 
     /**
@@ -42,12 +66,13 @@ class WorkSpacesController extends Controller
      */
     public function searchWorkspaceName($name)
     {
-        $ws = DB::table('work_spaces')
-            ->where('work_spaces.ws_name','like','%'.$name.'%')
-            ->join('images','work_spaces.ws_id','images.work_space_id')
-            ->select('work_spaces.ws_id','work_spaces.ws_name','work_spaces.description','images.img_url')->get();
-        return $ws ;
+
+        $context = new searchContext(new searchByName());
+        return $context->doSearch($name);
+
+
     }
+
 
     /**
      * Display the specified resource.
