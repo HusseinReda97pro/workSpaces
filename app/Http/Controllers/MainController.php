@@ -31,7 +31,7 @@ class MainController extends Controller
         ]);
 
 
-        $login = DB::table("users")
+        $login = DB::table("users") 
                     ->where('email',$request->email)
                     ->where('password',$request->password)
                     ->get() ;
