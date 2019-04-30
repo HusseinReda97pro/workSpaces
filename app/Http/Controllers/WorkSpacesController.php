@@ -27,7 +27,7 @@ class WorkSpacesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-
+// ده حسين مكركب الدنيا خالص
 //    public function searchWorkspaceRegion(Request $request)
 //    {
 //        $ws = DB::table('work_spaces')
@@ -64,11 +64,15 @@ class WorkSpacesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function searchWorkspaceName($name)
+//     كده هتاخد Request بقي
+//    public function searchWorkspaceName($name)
+    public function searchWorkspaceName(Request $request)
+
     {
 
         $context = new searchContext(new searchByName());
-        return $context->doSearch($name);
+        
+        return $context->doSearch($request->name);
 
 
     }

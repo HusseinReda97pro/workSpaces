@@ -86,6 +86,11 @@ Route ::post('main/logout','MainController@logout');
 // search workspaces
 Route ::get('/RequestWorkspaces','WorkSpacesController@getWorkspaces');
 Route ::post('/searchWorkspaceRegion','WorkSpacesController@searchWorkspaceRegion');
-Route ::get('/searchWorkspaceName/{name}','WorkSpacesController@searchWorkspaceName');
+// بص يا حسين الراوت الي تحتيا ده الريكويست فيه قوته 2000 ريختر هخهخهخووووي
+// لا بص بجد الراوت ده كان بياخد بارامتر name وانا خليته يا خد ريكويست بدل البرامتر وبقي post بدل get
+//Route ::get('/searchWorkspaceName/{name}','WorkSpacesController@searchWorkspaceName');
+// التعديل
+Route ::post('/searchWorkspaceName','WorkSpacesController@searchWorkspaceName');
+
 Route ::post('/userSeeDetails','WorkSpacesController@userSeeDetails');
 
