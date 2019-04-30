@@ -123,11 +123,13 @@ class AdminController extends Controller
      */
     public function updateState(Request $request, $id)
     {
+        Mail::send();
         $true = DB::table('users')
             ->where('id', $id)
             ->update(['state' => 1]);
              $this->sendAcceptMail();
             return $true ;
+
 
     }
 
@@ -153,12 +155,12 @@ class AdminController extends Controller
         $this->sendRejectedMail();
         return $true ;
     }
-    public function sendAcceptMail(){
-        Mail::to('pro.hussein.reda@gmail.com')->send(new sendMail(1));
-    }
-    public function sendRejectedMail(){
-        Mail::to('pro.hussein.reda@gmail.com')->send(new sendMail(0));
-    }
+//    public function sendAcceptMail(){
+//        Mail::to('pro.hussein.reda@gmail.com')->send(new sendMail(1));
+//    }
+//    public function sendRejectedMail(){
+//        Mail::to('pro.hussein.reda@gmail.com')->send(new sendMail(0));
+//    }
     public function addPayment(Request $request){
         DB::table('Payments')->insert(
             [   'Bank_Name' => $request->Bank_Name ,
