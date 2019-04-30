@@ -52,7 +52,7 @@ class WorkSpacesController extends Controller
 //            ->select('work_spaces.ws_id','work_spaces.ws_name','work_spaces.description','images.img_url')->get();
 //        return $ws ;
 //    }
-    public function searchWorkspaceRegion($request)
+    public function searchWorkspaceRegion(Request $request)
     {
         $context = new searchContext(new searchByRegion());
         return $context->doSearch($request);
@@ -65,14 +65,14 @@ class WorkSpacesController extends Controller
      * @return \Illuminate\Http\Response
      */
 //     كده هتاخد Request بقي
-//    public function searchWorkspaceName($name)
-    public function searchWorkspaceName(Request $request)
+   public function searchWorkspaceName($name)
+    //public function searchWorkspaceName(Request $request)
 
     {
 
         $context = new searchContext(new searchByName());
         
-        return $context->doSearch($request->name);
+        return $context->doSearch($name);
 
 
     }

@@ -72,7 +72,7 @@ new Vue({
         },
         searchByName(){
             var self = this ;
-            axios.post('/searchWorkspaceName',self.name)
+            axios.get('/searchWorkspaceName/'+self.name)
                 .then(function (response) {
                     self.workspaces = response.data;
                     console.log(self.workspaces);
