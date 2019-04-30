@@ -54,7 +54,7 @@ class WorkSpacesController extends Controller
 //    }
     public function searchWorkspaceRegion(Request $request)
     {
-        $context = new searchContext(new searchByRegion());
+        $context = new searchContext(searchByRegion::getInstance());
         return $context->doSearch($request);
     }
 
@@ -70,7 +70,7 @@ class WorkSpacesController extends Controller
 
     {
 
-        $context = new searchContext(new searchByName());
+        $context = new searchContext( searchByName::getInstance());
         
         return $context->doSearch($name);
 
