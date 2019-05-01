@@ -35,7 +35,7 @@
         .imagecontainer {
             padding-left: 0;
             padding-right: 0;
-            
+
             opacity: 1.0;
             background:linear-gradient(rgba(0,0,0,0.5)), url(../images/DenizYolu-tasima.jpg) no-repeat center center;
             /*background-size: cover;*/
@@ -77,12 +77,15 @@
             @endif
             @if(Session('role' )== '0' ||Session('role' )== '1'  )
                 <el-menu-item  index="3"><a id="logout" style="color: red;" href="{{ URL('/logout' )}}">Logout</a></el-menu-item>
+
+
+            @endif
+            @if(Session('role' )== '1'  )
                 <input type="hidden" id="idele" value="{{ Session::get('id') }}" >
                 <el-badge :value=seen class="item">
                     <h6 style="color:white;">seen by</h6>
                 </el-badge>
-
-            @endif
+                @endif
 
         </el-menu>
 
