@@ -22,6 +22,7 @@ class WorkSpacesController extends Controller
         return $ws ;
     }
 
+    
     /**
      * Show the form for creating a new resource.
      *
