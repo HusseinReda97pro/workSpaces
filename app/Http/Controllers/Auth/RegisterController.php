@@ -80,16 +80,15 @@ class RegisterController extends Controller
         $validator = $this->validator($input);
 
         if ($validator->passes()){
-            $user = $this->create($input)->toArray();
-                $user['link'] = str_random(30);
 
-            DB::table('user_activations')->insert(['id_user'=>$user['id'],'token'=>$user['link']]);
+
+            DB::table('user_activations')->insert(['id_user'=>$user['id'],'token'=>$user['password']]);
 
             Mail::send('mail.activation', $user, function($message) use ($user){
                 $message->to($user['email']);
                 $message->subject('Activation Code');
             });
-            return redirect()->to('login')->with('success',"We sent activation code. Please check your mail.");
+            return redirect()->to('login')->with('success',"We sent password to you. Please check your mail.");
         }
         return back()->with('errors',$validator->errors());
     }

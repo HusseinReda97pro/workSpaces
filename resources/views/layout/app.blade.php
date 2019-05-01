@@ -35,11 +35,12 @@
         .imagecontainer {
             padding-left: 0;
             padding-right: 0;
-
+            
             opacity: 1.0;
-            background: url(../images/DenizYolu-tasima.jpg) no-repeat center center;
+            background:linear-gradient(rgba(0,0,0,0.5)), url(../images/DenizYolu-tasima.jpg) no-repeat center center;
             /*background-size: cover;*/
             background-attachment: fixed;
+            background-color: rgba(0, 0, 0, 0.5);
         }
         #logout{
             font-weight: bolder;

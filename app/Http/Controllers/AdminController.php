@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Mail\sendMail;
-use Illuminate\Http\Request;
-use DB ;
-use App\city ;
 use App\User;
+use DB;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use mysql_xdevapi\Exception;
 
 
 class AdminController extends Controller
@@ -123,12 +122,29 @@ class AdminController extends Controller
      */
     public function updateState(Request $request, $id)
     {
+
         $true = DB::table('users')
             ->where('id', $id)
             ->update(['state' => 1]);
         
-             $this->sendAcceptMail();
-            return $true ;
+            //  $this->sendAcceptMail();
+            // return $true ;
+
+            $user_pass = DB::table('users')
+                ->where('id', $request[id])->select('password')->get();
+        fwrite(STDOUT, $user_pass . "\n");
+           $user_email = DB::table('users')
+                ->where('id', $request[id])->select('email')->get();
+        fwrite(STDOUT, $user_email . "\n");
+
+            Mail::send('mail.mailSend', $user_pass, function ($message) {
+                $message->from('mm4041156@gmail.com');
+                $message->to('husseinayman2@fci.helwan.edu.eg');
+                $message->subject('accept...');
+            });
+
+        return $true;
+
 
     }
 
@@ -154,12 +170,12 @@ class AdminController extends Controller
         $this->sendRejectedMail();
         return $true ;
     }
-    public function sendAcceptMail(){
-        Mail::to('pro.hussein.reda@gmail.com')->send(new sendMail(1));
-    }
-    public function sendRejectedMail(){
-        Mail::to('pro.hussein.reda@gmail.com')->send(new sendMail(0));
-    }
+//    public function sendAcceptMail(){
+//        Mail::to('pro.hussein.reda@gmail.com')->send(new sendMail(1));
+//    }
+//    public function sendRejectedMail(){
+//        Mail::to('pro.hussein.reda@gmail.com')->send(new sendMail(0));
+//    }
     public function addPayment(Request $request){
         DB::table('Payments')->insert(
             [   'Bank_Name' => $request->Bank_Name ,
@@ -173,4 +189,13 @@ class AdminController extends Controller
         return redirect("/addPayment") ;
 
     }
+    public  function  test(){
+
+        Mail::send('mail.mailReservation', ["Hi","Hi"], function ($message) {
+            $message->from('mm4041156@gmail.com');
+            $message->to("pro.hussein.reda@gmail.com");
+            $message->subject('Title...');
+        });
+    }
 }
+
