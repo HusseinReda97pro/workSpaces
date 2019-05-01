@@ -6,6 +6,5 @@
     <pre>
         welcome to our website "ديون الهبيدة"
         This mail for Notify you the data of work space that you selected.
-            {{$workspaceData->ws_name}}
     </pre>
 </h3>

@@ -96,13 +96,14 @@ class WorkSpacesController extends Controller
             ->select('ws_name','ws_address','website')
             ->where('ws_id','=',$request->ws_id )->get() ;
 
+
         Mail::send('mail.mailReservation', $workspaceData, function ($message) {
             $message->from('mm4041156@gmail.com');
-            $message->to($request->ws_id);
+            $message->to($request->mail);
             $message->subject('Title...');
         });
 
-        return "Hi Hi";
+        return $workspaceData;
     }
 
     /**
