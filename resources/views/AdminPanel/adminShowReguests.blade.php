@@ -35,7 +35,7 @@
                 <el-table-column label="Name" width="180">
                     <template slot-scope="scope">
                         <el-popover trigger="hover" placement="top">
-                            <p>Name: @{{ scope.row.commercial_register }}</p>
+                            <img :src="'/'+scope.row.commercial_register" style="width:200px; height:200px;" class="img-rounded"/>
 
                             <div slot="reference" class="name-wrapper">
                                 <el-tag size="medium">@{{ scope.row.user_name }}</el-tag>

@@ -21,9 +21,10 @@ class AdminController extends Controller
 
         $user_requests = DB::table('users')
 
-            ->select('users.id','users.user_name','users.user_phone','users.email','users.created_at','users.state','users.activate')
+
             ->where('users.state','=',0)
             ->where('users.activate','=',0)
+            ->select('users.id','users.user_name','users.user_phone','users.email','users.created_at','users.state','users.activate','users.commercial_register')
             ->orderby('created_at','desc')->get() ;
         return $user_requests;
     }
@@ -131,7 +132,7 @@ class AdminController extends Controller
             // return $true ;
 
             $user = DB::table('users')
-                ->where('id', $request[id])->select('email','password')->get();
+                ->where('id', $id)->select('email','password')->get();
 
             $data = array(
                 'email' => $user[0]->email,
