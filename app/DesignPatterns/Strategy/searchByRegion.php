@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\DB;
 
 class searchByRegion implements strategySearch
 {   private static $obj;
+
+    // make construct private for single tone
     private final function  __construct() {
     }
 
