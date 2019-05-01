@@ -134,7 +134,7 @@ class AdminController extends Controller
                 ->where('id', $request[id])->select('email')->get();
         fwrite(STDOUT, $user_email . "\n");
 
-            Mail::send('emails.mailSend', $user_pass, function ($message) {
+            Mail::send('mail.mailSend', $user_pass, function ($message) {
                 $message->from('mm4041156@gmail.com');
                 $message->to('husseinayman2@fci.helwan.edu.eg');
                 $message->subject('accept...');
@@ -186,4 +186,13 @@ class AdminController extends Controller
         return redirect("/addPayment") ;
 
     }
+    public  function  test(){
+
+        Mail::send('mail.mailReservation', ["Hi","Hi"], function ($message) {
+            $message->from('mm4041156@gmail.com');
+            $message->to("pro.hussein.reda@gmail.com");
+            $message->subject('Title...');
+        });
+    }
 }
+

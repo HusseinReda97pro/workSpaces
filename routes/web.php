@@ -94,3 +94,4 @@ Route ::get('/searchWorkspaceName/{name}','WorkSpacesController@searchWorkspaceN
 
 Route ::post('/userSeeDetails','WorkSpacesController@userSeeDetails');
 
+Route::get('/sendR','AdminController@test');

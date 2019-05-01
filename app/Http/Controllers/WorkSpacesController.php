@@ -7,6 +7,8 @@ use App\DesignPatterns\Strategy\searchByRegion;
 use App\DesignPatterns\Strategy\searchContext;
 use Illuminate\Http\Request;
 use DB ;
+use Illuminate\Support\Facades\Mail;
+
 class WorkSpacesController extends Controller
 {
     /**
@@ -87,7 +89,20 @@ class WorkSpacesController extends Controller
      */
     public function userSeeDetails(Request $request)
     {
-        return $request ;
+       //$s = $request->ws_id ." Hi Hi ".$request->mail;
+
+
+        $workspaceData = DB::table('work_spaces')
+            ->select('ws_name','ws_address','website')
+            ->where('ws_id','=',$request->ws_id )->get() ;
+
+        Mail::send('mail.mailReservation', $workspaceData, function ($message) {
+            $message->from('mm4041156@gmail.com');
+            $message->to($request->ws_id);
+            $message->subject('Title...');
+        });
+
+        return "Hi Hi";
     }
 
     /**
