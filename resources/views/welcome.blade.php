@@ -29,8 +29,10 @@
         <div class="container">
           <div class="intro-text">
             {{--<img  src="images/workspace.png" alt="">--}}
+            <br><br>
             <div style="font-size:25px;" class="intro-lead-in">Registrate Your Workspace with us</div>
             <div class="intro-heading text-uppercase">Be Reachable</div>
+            <button type="button" class="btn btn-primary btn-lg">Show Workspaces</button>
           </div>
         </div>
       </header>

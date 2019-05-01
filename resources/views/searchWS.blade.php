@@ -102,10 +102,10 @@
                                 >
                                 {{--<span>Write your Mail to Send the Details .</span>--}}
                                 <el-input placeholder="ex: John@Mail.com" v-model="user.mail" class="input-with-select">
-                                    <el-button slot="append" icon="el-icon-circle-check" @click="sendmail">send mail</el-button>
+                                    <el-button slot="append" icon="el-icon-circle-check" @click="sendmail">Send Mail</el-button>
                                 </el-input>
                                 <span slot="footer" class="dialog-footer">
-                                    <el-button @click="dialogVisible = false">Cancel</el-button>
+                                    <el-button @click="dialogVisible = false">CANCEL</el-button>
                                   </span>
                             </el-dialog>
                         </el-card>
