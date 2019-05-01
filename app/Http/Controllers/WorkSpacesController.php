@@ -65,14 +65,14 @@ class WorkSpacesController extends Controller
      * @return \Illuminate\Http\Response
      */
 //     كده هتاخد Request بقي
-   public function searchWorkspaceName($name)
-    //public function searchWorkspaceName(Request $request)
+//   public function searchWorkspaceName($name)
+    public function searchWorkspaceName(Request $request)
 
     {
 
         $context = new searchContext( searchByName::getInstance());
-        
-        return $context->doSearch($name);
+
+        return $context->doSearch($request);
 
 
     }

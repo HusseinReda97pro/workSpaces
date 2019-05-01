@@ -134,6 +134,7 @@ class OwnerController extends Controller
     }
 
     public function updatePlaceData(Request $request) {
+
         DB::table('work_spaces')
             ->where('ws_id', $request->ws_id)
             ->update([
@@ -156,16 +157,22 @@ class OwnerController extends Controller
             ->update([
                 'phone_number' => $request->phone2,
             ]);
-//        $image = $request->image;
-//        $image = str_replace('data:image/jpeg;base64,', '', $image);
-//        $image = str_replace(' ', '+', $image);
-//        $imageName = 'WSimage/'.'ws-'.time().'.'.'jpeg';
-//        \File::put(public_path().'/'.$imageName, base64_decode($image));
-//        DB::table('images')
-//            ->where('work_space_id', $request->ws_id)
-//            ->update([
-//                'img_url' => $imageName,
-//            ]);
+        if(is_null($request->image)){
+//            do nothing
+        }else {
+
+            \File::delete(public_path() . '/' . $request->oldImage);
+            $image = $request->image;
+            $image = str_replace('data:image/jpeg;base64,', '', $image);
+            $image = str_replace(' ', '+', $image);
+            $imageName = 'WSimage/' . 'ws-' . time() . '.' . 'jpeg';
+            \File::put(public_path() . '/' . $imageName, base64_decode($image));
+            DB::table('images')
+                ->where('work_space_id', $request->ws_id)
+                ->update([
+                    'img_url' => $imageName,
+                ]);
+        }
         return 1 ;
 
     }

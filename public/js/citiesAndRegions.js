@@ -27,16 +27,16 @@ new Vue({
         },
     mounted: function () {
         var self = this;
-        // self.auth();
+        self.auth();
         self.showCities();
     },
     methods : {
-        // auth : function(){
-        //     // var check = document.getElementById('idele').value;
-        //     if(!check){
-        //         throw new Error("Something went badly wrong!");
-        //     }
-        // },
+        auth : function(){
+            var check = document.getElementById('idele').value;
+            if(!check){
+                throw new Error("Something went badly wrong!");
+            }
+        },
         showCities: function () {
             var self = this;
             axios.get('/showCities')
@@ -57,6 +57,7 @@ new Vue({
                     self.ruleForm.city_name = '';
                     self.ruleForm.region_name = '';
                     console.log(response.data);
+                    self.update();
                 })
                 .catch(function (error) {
                     console.log(error);
@@ -70,6 +71,7 @@ new Vue({
                     self.ruleRegionForm.city_id = '';
                     self.ruleRegionForm.region_name = '';
                     console.log(response.data);
+                    self.update();
                 })
                 .catch(function (error) {
                     console.log(error);
@@ -83,6 +85,7 @@ new Vue({
                     console.log(response.data);
                     self.dialogVisible = false ;
                     self.showCities() ;
+                    self.delete();
                 })
                 .catch(function (error) {
                     console.log(error);
@@ -96,11 +99,28 @@ new Vue({
                     console.log(response.data);
                     self.dialogVisible = false ;
                     self.showCities() ;
+                    self.delete();
                 })
                 .catch(function (error) {
                     console.log(error);
                 });
-        }
+        },
+        update() {
+            this.$notify({
+                title: 'Success',
+                message: 'your data has been updated',
+                type: 'success'
+            });
+        },
+        delete() {
+            this.$notify({
+                title: 'Success',
+                message: 'has been Deleted',
+                type: 'danger'
+            });
+        },
+
+
 
 
     }

@@ -104,6 +104,7 @@ public  function logout(){
             'commercial_register'=> $url,
             'user_role'=> 1 ,
           ]);
+
           $user->save();
           return view('registrated', ['user_name' =>$user->user_name]);
     }

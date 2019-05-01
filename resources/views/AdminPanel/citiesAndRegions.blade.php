@@ -2,6 +2,7 @@
 
 @section('adminPanelContent')
     <div id="citiesAndRegions">
+        <input type="hidden" id="idele" value="{{ Session::get('role') }}" >
         <el-row :gutter="20">
             <el-col :span="10"><div class="grid-content bg-purple">
                     <template>

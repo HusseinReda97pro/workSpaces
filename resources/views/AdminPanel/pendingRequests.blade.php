@@ -2,6 +2,7 @@
 
 @section('adminPanelContent')
     <div id="adminShowRequests">
+        <input type="hidden" id="idele" value="{{ Session::get('role') }}" >
 {{--Table--}}
         <template>
             <el-table :data="tableData" style="width: 100%">

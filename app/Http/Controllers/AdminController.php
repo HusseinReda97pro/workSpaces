@@ -126,6 +126,7 @@ class AdminController extends Controller
         $true = DB::table('users')
             ->where('id', $id)
             ->update(['state' => 1]);
+        
              $this->sendAcceptMail();
             return $true ;
 

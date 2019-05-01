@@ -1,7 +1,7 @@
 @extends('layout.app')
 <?php
 session()->regenerate();
-if(Session('role')==1){
+if(!(Session('role')==0)){
 
     echo "ليس لديك الصلاحيات للدخول على تلك الصفحة";
     exit();

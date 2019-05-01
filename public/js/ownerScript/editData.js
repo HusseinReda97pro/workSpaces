@@ -21,6 +21,7 @@ new Vue({
                 phone2:'',
                 websiteURL:'',
                 image:'',
+                oldImage:'',
                 desc: '',
                 owner_id:''
             },
@@ -119,7 +120,7 @@ new Vue({
                     self.ruleForm.phone = response.data[0].phone_number;
                     self.ruleForm.phone2 = response.data[0].phone_number;
                     self.ruleForm.websiteURL = response.data[0].website;
-                    self.ruleForm.image = response.data[0].img_url;
+                    self.ruleForm.oldImage = response.data[0].img_url;
                     self.ruleForm.owner_id =self.user_id;
                 })
                 .catch(function (error) {

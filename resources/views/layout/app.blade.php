@@ -41,6 +41,15 @@
             /*background-size: cover;*/
             background-attachment: fixed;
         }
+        #logout{
+            font-weight: bolder;
+            font-size: larger;
+        }
+        .item {
+            margin-top: 20px;
+            margin-lift: 40px;
+            padding-right: 10px;
+        }
 
     </style>
 </head>
@@ -55,17 +64,22 @@
             text-color="#fff"
             active-text-color="#ffd04b">
             <el-menu-item><img  src="images/workspace.png" style="height:120% ;width: 50%;padding: -190px; " alt="">We Make Things easy , We Save Time</el-menu-item>
-            @if(!session()->has('role'))
-                <el-menu-item index="3"><a href="{{ URL('/signIn' )}}">Login</a></el-menu-item>
 
-            @endif
         @if(Session('role') != '0')
                 <el-menu-item index="1"><a href="{{ URL('/' )}}">Home</a></el-menu-item>
                 <el-menu-item index="2"><a href="{{ URL('/searchWS' )}}">Search WorkSpace</a></el-menu-item>
                 <el-menu-item index="4"><a href="{{ URL('/registration' )}}">Registration</a></el-menu-item>
             @endif
+            @if(!session()->has('role'))
+                <el-menu-item index="3"><a href="{{ URL('/signIn' )}}">Login</a></el-menu-item>
+
+            @endif
             @if(Session('role' )== '0' ||Session('role' )== '1'  )
-                <el-menu-item  index="3"><a href="{{ URL('/logout' )}}">Logout</a></el-menu-item>
+                <el-menu-item  index="3"><a id="logout" style="color: red;" href="{{ URL('/logout' )}}">Logout</a></el-menu-item>
+                <input type="hidden" id="idele" value="{{ Session::get('id') }}" >
+                <el-badge :value=seen class="item">
+                    <h6 style="color:white;">seen by</h6>
+                </el-badge>
 
             @endif
 
