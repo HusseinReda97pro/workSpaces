@@ -6,7 +6,7 @@ new Vue({
         activeIndex: '',
             input3: '',
             select: '' ,
-            seen : 10
+            seen : ''
 
     },
     mounted: function () {

@@ -24,7 +24,7 @@ class WorkSpacesController extends Controller
         return $ws ;
     }
 
-    
+
     /**
      * Show the form for creating a new resource.
      *
@@ -89,21 +89,37 @@ class WorkSpacesController extends Controller
      */
     public function userSeeDetails(Request $request)
     {
-       //$s = $request->ws_id ." Hi Hi ".$request->mail;
-
-
         $workspaceData = DB::table('work_spaces')
-            ->select('ws_name','ws_address','website')
-            ->where('ws_id','=',$request->ws_id )->get() ;
+            ->where('ws_id',$request->ws_id )
+            ->join('phone_numbers','work_spaces.ws_id','=','phone_numbers.work_space_id')
+            ->select('work_spaces.user_id','work_spaces.ws_name','work_spaces.ws_address','work_spaces.website','phone_numbers.phone_number')
+            ->get() ;
+        DB::table('customers')->insert([
+           'cust_email' => $request->mail ,
+            'ws_id' => $request->ws_id ,
+            'owner_id' => $workspaceData[0]->user_id
+        ]);
+        $workspaceData = DB::table('work_spaces')
+            ->where('ws_id',$request->ws_id )
+            ->join('phone_numbers','work_spaces.ws_id','=','phone_numbers.work_space_id')
+            ->select('work_spaces.ws_name','work_spaces.ws_address','work_spaces.website','phone_numbers.phone_number')
+            ->get() ;
+
+        $data = array("name"=>$workspaceData[0]->ws_name, "address"=>$workspaceData[0]->ws_address,
+            "website"=>$workspaceData[0]->website , "mail"=>$request->mail);
+//        return $data ;
+//        array_merge($data , ['mail' => $request->mail]) ;
 
 
-        Mail::send('mail.mailReservation', $workspaceData, function ($message) {
-            $message->from('mm4041156@gmail.com');
-            $message->to($request->mail);
-            $message->subject('Title...');
+        Mail::send(['text'=>'mail.mailReservation'], $data , function($message)use ($data) {
+            $message->to($data['mail'], 'Our Customer')->subject
+            ('WorkSpace Details');
+            $message->from('mm4041156@gmail.com','Workspace Support');
         });
 
-        return $workspaceData;
+
+
+        return 1;
     }
 
     /**
@@ -112,9 +128,11 @@ class WorkSpacesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function getSeen($id)
     {
-        //
+        $seen = DB::table('customers')
+                ->where('owner_id',$id)->count();
+        return $seen ;
     }
 
     /**

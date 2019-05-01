@@ -93,5 +93,6 @@ Route ::get('/searchWorkspaceName/{name}','WorkSpacesController@searchWorkspaceN
 //Route ::post('/searchWorkspaceName','WorkSpacesController@searchWorkspaceName');
 
 Route ::post('/userSeeDetails','WorkSpacesController@userSeeDetails');
+Route ::get('/seen/{id}','WorkSpacesController@getSeen');
 
 Route::get('/sendR','AdminController@test');

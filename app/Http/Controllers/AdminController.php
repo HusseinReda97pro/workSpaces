@@ -126,21 +126,22 @@ class AdminController extends Controller
         $true = DB::table('users')
             ->where('id', $id)
             ->update(['state' => 1]);
-        
+
             //  $this->sendAcceptMail();
             // return $true ;
 
-            $user_pass = DB::table('users')
-                ->where('id', $request[id])->select('password')->get();
-        fwrite(STDOUT, $user_pass . "\n");
-           $user_email = DB::table('users')
-                ->where('id', $request[id])->select('email')->get();
-        fwrite(STDOUT, $user_email . "\n");
+            $user = DB::table('users')
+                ->where('id', $request[id])->select('email','password')->get();
 
-            Mail::send('mail.mailSend', $user_pass, function ($message) {
-                $message->from('mm4041156@gmail.com');
-                $message->to('husseinayman2@fci.helwan.edu.eg');
-                $message->subject('accept...');
+            $data = array(
+                'email' => $user[0]->email,
+                'password' => $user[0]->password
+            );
+
+            Mail::send('mail.mailSend', $data , function ($message) use($data) {
+                $message->from('mm4041156@gmail.com','Workspace Support');
+                $message->to($data['email'],'Workspace Owner');
+                $message->subject('Accept Workspace');
             });
 
         return $true;
