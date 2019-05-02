@@ -179,7 +179,7 @@ class AdminController extends Controller
 //        Mail::to('pro.hussein.reda@gmail.com')->send(new sendMail(0));
 //    }
     public function addPayment(Request $request){
-        DB::table('Payments')->insert(
+        DB::table('payments')->insert(
             [   'Bank_Name' => $request->Bank_Name ,
                 'Bank_Account' => $request->Bank_Account,
                 'Bank_Number'=>$request->Bank_Number,
@@ -188,7 +188,7 @@ class AdminController extends Controller
             ]
         );
 
-        return redirect("/addPayment") ;
+        return redirect()->to('/addPayment') ;
 
     }
     public  function  test(){

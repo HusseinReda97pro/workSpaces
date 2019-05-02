@@ -13,7 +13,7 @@ if(Session('id')==1){
             <div class="row">
                 {{--<div class="col col-md-2"></div>--}}
 
-                <form method="post" action="/addPaymenttoDb" enctype="multipart/form-data" style="padding:10px 0px 20px 0px ">
+                <form method="post" action="/addPaymenttoDb"  style="padding:10px 0px 20px 0px ">
                     {{csrf_field()}}
 
                     <div class="form-group">
