@@ -14,7 +14,11 @@ if(Session('id')==1){
                 {{--<div class="col col-md-2"></div>--}}
 
                 <form method="post" action="/addPaymenttoDb"  style="padding:10px 0px 20px 0px ">
-                    {{csrf_field()}}
+                    {{--<meta name="csrf-token" content="{{ csrf_token() }}">--}}
+
+                    @csrf
+
+{{--                    {{csrf_field()}}--}}
 
                     <div class="form-group">
                         <label for="exampleInputEmail1">Bank Name</label>
@@ -33,14 +37,6 @@ if(Session('id')==1){
                         <label for="exampleInputPassword1"> Swift Code</label>
                         <input type="text" class="form-control" id="exampleInputPassword1" placeholder="ex. 01212" name="Swift_Code" required>
                     </div>
-                    {{--<div class="input-group">--}}
-                        {{--<div class="custom-file">--}}
-                            {{--<input type="file" class="custom-file-input" id="inputGroupFile04" name="image">--}}
-                            {{--<label class="custom-file-label" for="inputGroupFile04">Choose file</label>--}}
-                        {{--</div>--}}
-
-                        {{--<br>--}}
-                    {{--</div>--}}
 
                     <div class="form-group">
                     <button style="margin-top: 30px;" type="submit" class="btn btn-primary">insert</button>

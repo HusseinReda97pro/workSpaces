@@ -167,7 +167,8 @@ new Vue({
             axios.post('/deleteWS/'+self.ruleForm.ws_id)
                 .then(function (response) {
                     console.log(response.data);
-                    self.update();
+                    self.delete();
+                    self.getWS();
                 })
                 .catch(function (error) {
                     console.log(error);

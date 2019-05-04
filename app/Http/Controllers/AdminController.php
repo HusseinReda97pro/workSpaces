@@ -168,9 +168,8 @@ class AdminController extends Controller
     }
     public function deleteRequest($id)
     {
-        $true = DB::table('users')->where('id', $id)->delete();
-        $this->sendRejectedMail();
-        return $true ;
+        DB::table('users')->where('id', $id)->delete();
+        return 1 ;
     }
 //    public function sendAcceptMail(){
 //        Mail::to('pro.hussein.reda@gmail.com')->send(new sendMail(1));

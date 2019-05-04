@@ -83,6 +83,7 @@ public  function logout(){
     {
 
         if($request->hasFile('photo')) {
+
 //            $fileNameWithExt = $request->file('photo')->getClientOriginalName();
 //            $filename = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
 //            $extention = $request->file('photo')->getClientOriginalExtension();
@@ -90,7 +91,7 @@ public  function logout(){
 //            $path = $request->file('photo')->storeAs('public/images/', $fileNameToStore);
             $file = Input::file('photo');
             $file->move(public_path().'/uploads',$file->getClientOriginalName());
-            $url = URL::to("/").'/uploads/'.$file->getClientOriginalName();
+            $url ='uploads/'.$file->getClientOriginalName();
         } else {
             $url = 'public/uploads/noimage.jpg';
         }
